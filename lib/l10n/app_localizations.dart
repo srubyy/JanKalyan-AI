@@ -308,6 +308,264 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Transgender'**
   String get special_transgender;
+
+  /// No description provided for @q_location_type.
+  ///
+  /// In en, this message translates to:
+  /// **'Is your area Rural or Urban?'**
+  String get q_location_type;
+
+  /// No description provided for @loc_rural.
+  ///
+  /// In en, this message translates to:
+  /// **'Village (Rural) 🌳'**
+  String get loc_rural;
+
+  /// No description provided for @loc_urban.
+  ///
+  /// In en, this message translates to:
+  /// **'City (Urban) 🏙️'**
+  String get loc_urban;
+
+  /// No description provided for @q_state.
+  ///
+  /// In en, this message translates to:
+  /// **'Which State or Union Territory do you live in?'**
+  String get q_state;
+
+  /// No description provided for @state_andhra.
+  ///
+  /// In en, this message translates to:
+  /// **'Andhra Pradesh'**
+  String get state_andhra;
+
+  /// No description provided for @state_arunachal.
+  ///
+  /// In en, this message translates to:
+  /// **'Arunachal Pradesh'**
+  String get state_arunachal;
+
+  /// No description provided for @state_assam.
+  ///
+  /// In en, this message translates to:
+  /// **'Assam'**
+  String get state_assam;
+
+  /// No description provided for @state_bihar.
+  ///
+  /// In en, this message translates to:
+  /// **'Bihar'**
+  String get state_bihar;
+
+  /// No description provided for @state_chhattisgarh.
+  ///
+  /// In en, this message translates to:
+  /// **'Chhattisgarh'**
+  String get state_chhattisgarh;
+
+  /// No description provided for @state_goa.
+  ///
+  /// In en, this message translates to:
+  /// **'Goa'**
+  String get state_goa;
+
+  /// No description provided for @state_gujarat.
+  ///
+  /// In en, this message translates to:
+  /// **'Gujarat'**
+  String get state_gujarat;
+
+  /// No description provided for @state_haryana.
+  ///
+  /// In en, this message translates to:
+  /// **'Haryana'**
+  String get state_haryana;
+
+  /// No description provided for @state_himachal.
+  ///
+  /// In en, this message translates to:
+  /// **'Himachal Pradesh'**
+  String get state_himachal;
+
+  /// No description provided for @state_jharkhand.
+  ///
+  /// In en, this message translates to:
+  /// **'Jharkhand'**
+  String get state_jharkhand;
+
+  /// No description provided for @state_karnataka.
+  ///
+  /// In en, this message translates to:
+  /// **'Karnataka'**
+  String get state_karnataka;
+
+  /// No description provided for @state_kerala.
+  ///
+  /// In en, this message translates to:
+  /// **'Kerala'**
+  String get state_kerala;
+
+  /// No description provided for @state_mp.
+  ///
+  /// In en, this message translates to:
+  /// **'Madhya Pradesh'**
+  String get state_mp;
+
+  /// No description provided for @state_manipur.
+  ///
+  /// In en, this message translates to:
+  /// **'Manipur'**
+  String get state_manipur;
+
+  /// No description provided for @state_meghalaya.
+  ///
+  /// In en, this message translates to:
+  /// **'Meghalaya'**
+  String get state_meghalaya;
+
+  /// No description provided for @state_mizoram.
+  ///
+  /// In en, this message translates to:
+  /// **'Mizoram'**
+  String get state_mizoram;
+
+  /// No description provided for @state_nagaland.
+  ///
+  /// In en, this message translates to:
+  /// **'Nagaland'**
+  String get state_nagaland;
+
+  /// No description provided for @state_odisha.
+  ///
+  /// In en, this message translates to:
+  /// **'Odisha'**
+  String get state_odisha;
+
+  /// No description provided for @state_punjab.
+  ///
+  /// In en, this message translates to:
+  /// **'Punjab'**
+  String get state_punjab;
+
+  /// No description provided for @state_rajasthan.
+  ///
+  /// In en, this message translates to:
+  /// **'Rajasthan'**
+  String get state_rajasthan;
+
+  /// No description provided for @state_sikkim.
+  ///
+  /// In en, this message translates to:
+  /// **'Sikkim'**
+  String get state_sikkim;
+
+  /// No description provided for @state_tn.
+  ///
+  /// In en, this message translates to:
+  /// **'Tamil Nadu'**
+  String get state_tn;
+
+  /// No description provided for @state_telangana.
+  ///
+  /// In en, this message translates to:
+  /// **'Telangana'**
+  String get state_telangana;
+
+  /// No description provided for @state_tripura.
+  ///
+  /// In en, this message translates to:
+  /// **'Tripura'**
+  String get state_tripura;
+
+  /// No description provided for @state_up.
+  ///
+  /// In en, this message translates to:
+  /// **'Uttar Pradesh'**
+  String get state_up;
+
+  /// No description provided for @state_uttarakhand.
+  ///
+  /// In en, this message translates to:
+  /// **'Uttarakhand'**
+  String get state_uttarakhand;
+
+  /// No description provided for @state_wb.
+  ///
+  /// In en, this message translates to:
+  /// **'West Bengal'**
+  String get state_wb;
+
+  /// No description provided for @ut_andaman.
+  ///
+  /// In en, this message translates to:
+  /// **'Andaman & Nicobar'**
+  String get ut_andaman;
+
+  /// No description provided for @ut_chandigarh.
+  ///
+  /// In en, this message translates to:
+  /// **'Chandigarh'**
+  String get ut_chandigarh;
+
+  /// No description provided for @ut_dadra.
+  ///
+  /// In en, this message translates to:
+  /// **'Dadra & Nagar Haveli and Daman & Diu'**
+  String get ut_dadra;
+
+  /// No description provided for @ut_delhi.
+  ///
+  /// In en, this message translates to:
+  /// **'Delhi'**
+  String get ut_delhi;
+
+  /// No description provided for @ut_jk.
+  ///
+  /// In en, this message translates to:
+  /// **'Jammu & Kashmir'**
+  String get ut_jk;
+
+  /// No description provided for @ut_ladakh.
+  ///
+  /// In en, this message translates to:
+  /// **'Ladakh'**
+  String get ut_ladakh;
+
+  /// No description provided for @ut_lakshadweep.
+  ///
+  /// In en, this message translates to:
+  /// **'Lakshadweep'**
+  String get ut_lakshadweep;
+
+  /// No description provided for @ut_puducherry.
+  ///
+  /// In en, this message translates to:
+  /// **'Puducherry'**
+  String get ut_puducherry;
+
+  /// No description provided for @q_land_ownership.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you own any agricultural land?'**
+  String get q_land_ownership;
+
+  /// No description provided for @land_none.
+  ///
+  /// In en, this message translates to:
+  /// **'Landless 🚶'**
+  String get land_none;
+
+  /// No description provided for @land_small.
+  ///
+  /// In en, this message translates to:
+  /// **'Small Land (Up to 5 Acres) 🌾'**
+  String get land_small;
+
+  /// No description provided for @land_large.
+  ///
+  /// In en, this message translates to:
+  /// **'Large Land (More than 5 Acres) 🚜'**
+  String get land_large;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

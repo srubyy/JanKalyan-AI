@@ -17,11 +17,13 @@ class UserProfile {
     this.socialCategory,
     this.specialCategory,
     this.state,
+    this.landOwnership,
   });
 
   final String? socialCategory;
   final String? specialCategory;
   final String? state;
+  final String? landOwnership;
 }
 
 class SmartProfileBuilder extends StatefulWidget {

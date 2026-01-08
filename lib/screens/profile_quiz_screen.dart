@@ -13,68 +13,37 @@ class ProfileQuizScreen extends StatefulWidget {
 }
 
 class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
-  int _currentStep = 0;
-
   String? _ageGroup;
   String? _gender;
-  String? _incomeRange;
+
   String? _occupation;
   String? _socialCategory;
   String? _specialCategory;
+  String? _locationType;
+  String? _selectedState;
+  String? _landOwnership;
+  String _incomeFrequency = 'monthly';
+  double _incomeAmount = 10000;
 
-  final int _totalSteps = 7;
+  void _submitProfile() {
+    List<String> missingFields = [];
+    if (_ageGroup == null) missingFields.add('Age');
+    if (_gender == null) missingFields.add('Gender');
+    if (_occupation == null) missingFields.add('Occupation');
+    if (_locationType == null) missingFields.add('Location Type');
+    if (_selectedState == null) missingFields.add('State');
+    if (_landOwnership == null) missingFields.add('Land Ownership');
 
-  void _selectOption(String value) {
-    setState(() {
-      switch (_currentStep) {
-        case 0:
-          _ageGroup = value;
-          break;
-        case 1:
-          _gender = value;
-          break;
-        case 2:
-          _incomeRange = value;
-          break;
-        case 3:
-          _occupation = value;
-          break;
-        case 4:
-          // State - auto-set to Maharashtra
-          break;
-        case 5:
-          _socialCategory = value;
-          break;
-        case 6:
-          _specialCategory = value;
-          break;
-      }
-      _nextStep();
-    });
-  }
-
-  void _skip() {
-    setState(() {
-      if (_currentStep == 5) {
-        _socialCategory = null;
-      } else if (_currentStep == 6) {
-        _specialCategory = null;
-      }
-      _nextStep();
-    });
-  }
-
-  void _nextStep() {
-    if (_currentStep < _totalSteps - 1) {
-      setState(() {
-        _currentStep++;
-      });
-    } else {
-      _completeQuiz();
+    if (missingFields.isNotEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Please complete: ${missingFields.join(", ")}'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
     }
-  }
 
-  void _completeQuiz() {
     int age;
     if (_ageGroup == '0-18') {
       age = 18;
@@ -88,26 +57,23 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
       age = 65;
     }
 
-    double income;
-    if (_incomeRange == 'below_1l') {
-      income = 90000;
-    } else if (_incomeRange == '1l_2_5l') {
-      income = 150000;
-    } else if (_incomeRange == '2_5l_5l') {
-      income = 350000;
-    } else {
-      income = 600000;
+    double yearlyIncome = _incomeAmount;
+    if (_incomeFrequency == 'daily') {
+      yearlyIncome = _incomeAmount * 365;
+    } else if (_incomeFrequency == 'monthly') {
+      yearlyIncome = _incomeAmount * 12;
     }
 
     final profile = UserProfile(
       age: age,
       gender: _gender!,
-      income: income,
+      income: yearlyIncome,
       occupation: _occupation!,
-      locationType: 'rural',
+      locationType: _locationType!,
       socialCategory: _socialCategory,
       specialCategory: _specialCategory,
-      state: 'Maharashtra',
+      state: _selectedState!,
+      landOwnership: _landOwnership,
     );
 
     Navigator.of(context).pushReplacement(
@@ -117,313 +83,811 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
     );
   }
 
+  void _updateIncomeFrequency(String frequency) {
+    setState(() {
+      _incomeFrequency = frequency;
+      double maxLimit = 1000000;
+      if (frequency == 'daily') {
+        maxLimit = 5000;
+      } else if (frequency == 'monthly') {
+        maxLimit = 100000;
+      }
+
+      if (_incomeAmount > maxLimit) {
+        _incomeAmount = maxLimit;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
-    // Auto-advance for Maharashtra state question
-    if (_currentStep == 4) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (mounted) {
-          _nextStep();
-        }
-      });
-    }
-
     return Scaffold(
+      backgroundColor: Colors.grey[50],
       body: SafeArea(
         child: Column(
           children: [
-            _buildProgressBar(),
-            Expanded(child: _buildCurrentQuestion(l10n)),
+            _buildHeader(),
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildStateSection(l10n),
+                    const SizedBox(height: 32),
+                    _buildGenderSection(l10n),
+                    const SizedBox(height: 32),
+                    _buildAgeSection(l10n),
+                    const SizedBox(height: 32),
+                    _buildLocationTypeSection(l10n),
+                    const SizedBox(height: 32),
+                    _buildOccupationSection(l10n),
+                    const SizedBox(height: 32),
+                    _buildIncomeSection(l10n),
+                    const SizedBox(height: 32),
+                    _buildLandOwnershipSection(l10n),
+                    const SizedBox(height: 32),
+                    _buildSocialCategorySection(l10n),
+                    const SizedBox(height: 32),
+                    _buildSpecialCategorySection(l10n),
+                    const SizedBox(height: 32),
+                    _buildSubmitButton(l10n),
+                    const SizedBox(height: 20),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildProgressBar() {
+  Widget _buildHeader() {
     return Container(
-      padding: const EdgeInsets.all(16),
-      child: Column(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: const Row(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Text(
+            'Smart Profile Builder',
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildGenderSection(AppLocalizations l10n) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          l10n.q_gender,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black87,
+          ),
+        ),
+        const SizedBox(height: 16),
+        Row(
+          children: [
+            Expanded(
+              child: _BigIconCard(
+                icon: Icons.male,
+                label: l10n.gender_male,
+                color: Colors.blue,
+                isSelected: _gender == 'male',
+                onTap: () => setState(() => _gender = 'male'),
+              ),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: _BigIconCard(
+                icon: Icons.female,
+                label: l10n.gender_female,
+                color: Colors.pink,
+                isSelected: _gender == 'female',
+                onTap: () => setState(() => _gender = 'female'),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildOccupationSection(AppLocalizations l10n) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          l10n.q_occupation,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black87,
+          ),
+        ),
+        const SizedBox(height: 16),
+        Wrap(
+          spacing: 12,
+          runSpacing: 12,
+          children: [
+            _SmallIconCard(
+              icon: Icons.agriculture,
+              label: l10n.occ_farmer,
+              isSelected: _occupation == 'farmer',
+              onTap: () => setState(() => _occupation = 'farmer'),
+            ),
+            _SmallIconCard(
+              icon: Icons.school,
+              label: l10n.occ_student,
+              isSelected: _occupation == 'student',
+              onTap: () => setState(() => _occupation = 'student'),
+            ),
+            _SmallIconCard(
+              icon: Icons.construction,
+              label: l10n.occ_worker,
+              isSelected: _occupation == 'worker',
+              onTap: () => setState(() => _occupation = 'worker'),
+            ),
+            _SmallIconCard(
+              icon: Icons.handyman,
+              label: l10n.occ_artisan,
+              isSelected: _occupation == 'artisan',
+              onTap: () => setState(() => _occupation = 'artisan'),
+            ),
+            _SmallIconCard(
+              icon: Icons.home,
+              label: l10n.occ_homemaker,
+              isSelected: _occupation == 'homemaker',
+              onTap: () => setState(() => _occupation = 'homemaker'),
+            ),
+            _SmallIconCard(
+              icon: Icons.business,
+              label: l10n.occ_self_employed,
+              isSelected: _occupation == 'self_employed',
+              onTap: () => setState(() => _occupation = 'self_employed'),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildIncomeSection(AppLocalizations l10n) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          l10n.q_income,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black87,
+          ),
+        ),
+        const SizedBox(height: 16),
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: Colors.grey[300]!, width: 1.5),
+          ),
+          child: Row(
             children: [
+              _FrequencyButton(
+                label: 'Daily',
+                isSelected: _incomeFrequency == 'daily',
+                onTap: () => _updateIncomeFrequency('daily'),
+                isFirst: true,
+              ),
+              _FrequencyButton(
+                label: 'Monthly',
+                isSelected: _incomeFrequency == 'monthly',
+                onTap: () => _updateIncomeFrequency('monthly'),
+              ),
+              _FrequencyButton(
+                label: 'Yearly',
+                isSelected: _incomeFrequency == 'yearly',
+                onTap: () => _updateIncomeFrequency('yearly'),
+                isLast: true,
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 20),
+        SliderTheme(
+          data: SliderThemeData(
+            activeTrackColor: Colors.purple,
+            inactiveTrackColor: Colors.grey[300],
+            thumbColor: Colors.purple,
+            overlayColor: Colors.purple.withValues(alpha: 0.2),
+            trackHeight: 6,
+            thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 12),
+          ),
+          child: Slider(
+            value: _incomeAmount,
+            min: 0,
+            max: _incomeFrequency == 'daily'
+                ? 5000
+                : _incomeFrequency == 'monthly'
+                ? 100000
+                : 1000000,
+            divisions: 100,
+            onChanged: (value) => setState(() => _incomeAmount = value),
+          ),
+        ),
+        const SizedBox(height: 12),
+        Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: Colors.purple, width: 2),
+          ),
+          child: Row(
+            children: [
+              const Text(
+                '₹ ',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.purple,
+                ),
+              ),
               Text(
-                '${_currentStep + 1} / $_totalSteps',
+                _incomeAmount.toStringAsFixed(0),
                 style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.purple,
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 8),
-          LinearProgressIndicator(
-            value: (_currentStep + 1) / _totalSteps,
-            backgroundColor: Colors.grey[200],
-            valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
-            minHeight: 8,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildCurrentQuestion(AppLocalizations l10n) {
-    switch (_currentStep) {
-      case 0:
-        return _buildAgeQuestion(l10n);
-      case 1:
-        return _buildGenderQuestion(l10n);
-      case 2:
-        return _buildIncomeQuestion(l10n);
-      case 3:
-        return _buildOccupationQuestion(l10n);
-      case 4:
-        return _buildStateQuestion(l10n);
-      case 5:
-        return _buildSocialCategoryQuestion(l10n);
-      case 6:
-        return _buildSpecialCategoryQuestion(l10n);
-      default:
-        return const SizedBox();
-    }
-  }
-
-  Widget _buildAgeQuestion(AppLocalizations l10n) {
-    return _QuestionLayout(
-      icon: Icons.cake,
-      title: l10n.q_age,
-      options: [
-        _OptionData('0-18', Icons.child_care, l10n.age_0_18),
-        _OptionData('18-25', Icons.school, l10n.age_18_25),
-        _OptionData('26-40', Icons.work, l10n.age_26_40),
-        _OptionData('41-60', Icons.business_center, l10n.age_41_60),
-        _OptionData('60+', Icons.elderly, l10n.age_60_plus),
-      ],
-      onSelect: _selectOption,
-    );
-  }
-
-  Widget _buildGenderQuestion(AppLocalizations l10n) {
-    return _QuestionLayout(
-      icon: Icons.person,
-      title: l10n.q_gender,
-      options: [
-        _OptionData('male', Icons.man, l10n.gender_male),
-        _OptionData('female', Icons.woman, l10n.gender_female),
-        _OptionData('other', Icons.person_outline, l10n.gender_other),
-      ],
-      onSelect: _selectOption,
-    );
-  }
-
-  Widget _buildIncomeQuestion(AppLocalizations l10n) {
-    return _QuestionLayout(
-      icon: Icons.currency_rupee,
-      title: l10n.q_income,
-      options: [
-        _OptionData('below_1l', Icons.money_off, l10n.income_below_1l),
-        _OptionData('1l_2_5l', Icons.attach_money, l10n.income_1l_2_5l),
-        _OptionData(
-          '2_5l_5l',
-          Icons.account_balance_wallet,
-          l10n.income_2_5l_5l,
         ),
-        _OptionData('above_5l', Icons.payments, l10n.income_above_5l),
       ],
-      onSelect: _selectOption,
     );
   }
 
-  Widget _buildOccupationQuestion(AppLocalizations l10n) {
-    return _QuestionLayout(
-      icon: Icons.work,
-      title: l10n.q_occupation,
-      options: [
-        _OptionData('farmer', Icons.agriculture, l10n.occ_farmer),
-        _OptionData('student', Icons.school, l10n.occ_student),
-        _OptionData('worker', Icons.construction, l10n.occ_worker),
-        _OptionData('artisan', Icons.handyman, l10n.occ_artisan),
-        _OptionData('homemaker', Icons.home, l10n.occ_homemaker),
-        _OptionData('self_employed', Icons.business, l10n.occ_self_employed),
-      ],
-      onSelect: _selectOption,
-    );
-  }
-
-  Widget _buildStateQuestion(AppLocalizations l10n) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Icon(Icons.location_on, size: 80, color: Colors.blue),
-          const SizedBox(height: 24),
-          Text(
-            l10n.state_maharashtra,
-            style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w600),
+  Widget _buildAgeSection(AppLocalizations l10n) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          l10n.q_age,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black87,
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSocialCategoryQuestion(AppLocalizations l10n) {
-    return _QuestionLayout(
-      icon: Icons.group,
-      title: l10n.q_social_category,
-      options: [
-        _OptionData('SC', Icons.people, l10n.social_sc),
-        _OptionData('ST', Icons.people_outline, l10n.social_st),
-        _OptionData('OBC', Icons.groups, l10n.social_obc),
-        _OptionData('General', Icons.person, l10n.social_general),
-      ],
-      onSelect: _selectOption,
-      showSkip: true,
-      onSkip: _skip,
-      skipLabel: l10n.skip,
-    );
-  }
-
-  Widget _buildSpecialCategoryQuestion(AppLocalizations l10n) {
-    return _QuestionLayout(
-      icon: Icons.accessibility_new,
-      title: l10n.q_special_category,
-      options: [
-        _OptionData('disability', Icons.accessible, l10n.special_disability),
-        _OptionData('widow', Icons.woman, l10n.special_widow),
-        _OptionData(
-          'single_parent',
-          Icons.family_restroom,
-          l10n.special_single_parent,
         ),
-        _OptionData('transgender', Icons.transgender, l10n.special_transgender),
-      ],
-      onSelect: _selectOption,
-      showSkip: true,
-      onSkip: _skip,
-      skipLabel: l10n.skip,
-    );
-  }
-}
-
-class _OptionData {
-  final String value;
-  final IconData icon;
-  final String label;
-
-  _OptionData(this.value, this.icon, this.label);
-}
-
-class _QuestionLayout extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final List<_OptionData> options;
-  final Function(String) onSelect;
-  final bool showSkip;
-  final VoidCallback? onSkip;
-  final String? skipLabel;
-
-  const _QuestionLayout({
-    required this.icon,
-    required this.title,
-    required this.options,
-    required this.onSelect,
-    this.showSkip = false,
-    this.onSkip,
-    this.skipLabel,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(24.0),
-      child: Column(
-        children: [
-          Icon(icon, size: 64, color: Colors.blue),
-          const SizedBox(height: 16),
-          Text(
-            title,
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 32),
-          Expanded(
-            child: ListView.separated(
-              itemCount: options.length,
-              separatorBuilder: (context, index) => const SizedBox(height: 16),
-              itemBuilder: (context, index) {
-                final option = options[index];
-                return _OptionCard(
-                  icon: option.icon,
-                  label: option.label,
-                  onTap: () => onSelect(option.value),
-                );
-              },
+        const SizedBox(height: 16),
+        Wrap(
+          spacing: 12,
+          runSpacing: 12,
+          children: [
+            _SmallIconCard(
+              icon: Icons.child_care,
+              label: l10n.age_0_18,
+              isSelected: _ageGroup == '0-18',
+              onTap: () => setState(() => _ageGroup = '0-18'),
             ),
-          ),
-          if (showSkip) ...[
-            const SizedBox(height: 16),
-            TextButton(
-              onPressed: onSkip ?? () {},
-              style: TextButton.styleFrom(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 32,
-                  vertical: 16,
-                ),
+            _SmallIconCard(
+              icon: Icons.school,
+              label: l10n.age_18_25,
+              isSelected: _ageGroup == '18-25',
+              onTap: () => setState(() => _ageGroup = '18-25'),
+            ),
+            _SmallIconCard(
+              icon: Icons.work,
+              label: l10n.age_26_40,
+              isSelected: _ageGroup == '26-40',
+              onTap: () => setState(() => _ageGroup = '26-40'),
+            ),
+            _SmallIconCard(
+              icon: Icons.business_center,
+              label: l10n.age_41_60,
+              isSelected: _ageGroup == '41-60',
+              onTap: () => setState(() => _ageGroup = '41-60'),
+            ),
+            _SmallIconCard(
+              icon: Icons.elderly,
+              label: l10n.age_60_plus,
+              isSelected: _ageGroup == '60+',
+              onTap: () => setState(() => _ageGroup = '60+'),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSocialCategorySection(AppLocalizations l10n) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Text(
+              l10n.q_social_category,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
               ),
-              child: Text(
-                skipLabel ?? 'Skip',
-                style: const TextStyle(fontSize: 18),
+            ),
+            const SizedBox(width: 8),
+            Text(
+              '(${l10n.skip})',
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.grey[600],
+                fontStyle: FontStyle.italic,
               ),
             ),
           ],
-        ],
+        ),
+        const SizedBox(height: 16),
+        Wrap(
+          spacing: 12,
+          runSpacing: 12,
+          children: [
+            _SmallIconCard(
+              icon: Icons.people,
+              label: l10n.social_sc,
+              isSelected: _socialCategory == 'SC',
+              onTap: () => setState(() => _socialCategory = 'SC'),
+            ),
+            _SmallIconCard(
+              icon: Icons.people_outline,
+              label: l10n.social_st,
+              isSelected: _socialCategory == 'ST',
+              onTap: () => setState(() => _socialCategory = 'ST'),
+            ),
+            _SmallIconCard(
+              icon: Icons.groups,
+              label: l10n.social_obc,
+              isSelected: _socialCategory == 'OBC',
+              onTap: () => setState(() => _socialCategory = 'OBC'),
+            ),
+            _SmallIconCard(
+              icon: Icons.person,
+              label: l10n.social_general,
+              isSelected: _socialCategory == 'General',
+              onTap: () => setState(() => _socialCategory = 'General'),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSpecialCategorySection(AppLocalizations l10n) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Text(
+              l10n.q_special_category,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Text(
+              '(${l10n.skip})',
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.grey[600],
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Wrap(
+          spacing: 12,
+          runSpacing: 12,
+          children: [
+            _SmallIconCard(
+              icon: Icons.accessible,
+              label: l10n.special_disability,
+              isSelected: _specialCategory == 'disability',
+              onTap: () => setState(() => _specialCategory = 'disability'),
+            ),
+            _SmallIconCard(
+              icon: Icons.woman,
+              label: l10n.special_widow,
+              isSelected: _specialCategory == 'widow',
+              onTap: () => setState(() => _specialCategory = 'widow'),
+            ),
+            _SmallIconCard(
+              icon: Icons.family_restroom,
+              label: l10n.special_single_parent,
+              isSelected: _specialCategory == 'single_parent',
+              onTap: () => setState(() => _specialCategory = 'single_parent'),
+            ),
+            _SmallIconCard(
+              icon: Icons.transgender,
+              label: l10n.special_transgender,
+              isSelected: _specialCategory == 'transgender',
+              onTap: () => setState(() => _specialCategory = 'transgender'),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildLocationTypeSection(AppLocalizations l10n) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          l10n.q_location_type,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black87,
+          ),
+        ),
+        const SizedBox(height: 16),
+        Row(
+          children: [
+            Expanded(
+              child: _BigIconCard(
+                icon: Icons.nature_people,
+                label: l10n.loc_rural,
+                color: Colors.green,
+                isSelected: _locationType == 'rural',
+                onTap: () => setState(() => _locationType = 'rural'),
+              ),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: _BigIconCard(
+                icon: Icons.location_city,
+                label: l10n.loc_urban,
+                color: Colors.orange,
+                isSelected: _locationType == 'urban',
+                onTap: () => setState(() => _locationType = 'urban'),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildStateSection(AppLocalizations l10n) {
+    final Map<String, String> states = {
+      'Andhra Pradesh': l10n.state_andhra,
+      'Arunachal Pradesh': l10n.state_arunachal,
+      'Assam': l10n.state_assam,
+      'Bihar': l10n.state_bihar,
+      'Chhattisgarh': l10n.state_chhattisgarh,
+      'Goa': l10n.state_goa,
+      'Gujarat': l10n.state_gujarat,
+      'Haryana': l10n.state_haryana,
+      'Himachal Pradesh': l10n.state_himachal,
+      'Jharkhand': l10n.state_jharkhand,
+      'Karnataka': l10n.state_karnataka,
+      'Kerala': l10n.state_kerala,
+      'Madhya Pradesh': l10n.state_mp,
+      'Maharashtra': l10n.state_maharashtra,
+      'Manipur': l10n.state_manipur,
+      'Meghalaya': l10n.state_meghalaya,
+      'Mizoram': l10n.state_mizoram,
+      'Nagaland': l10n.state_nagaland,
+      'Odisha': l10n.state_odisha,
+      'Punjab': l10n.state_punjab,
+      'Rajasthan': l10n.state_rajasthan,
+      'Sikkim': l10n.state_sikkim,
+      'Tamil Nadu': l10n.state_tn,
+      'Telangana': l10n.state_telangana,
+      'Tripura': l10n.state_tripura,
+      'Uttar Pradesh': l10n.state_up,
+      'Uttarakhand': l10n.state_uttarakhand,
+      'West Bengal': l10n.state_wb,
+      'Andaman & Nicobar': l10n.ut_andaman,
+      'Chandigarh': l10n.ut_chandigarh,
+      'Dadra & Nagar Haveli and Daman & Diu': l10n.ut_dadra,
+      'Delhi': l10n.ut_delhi,
+      'Jammu & Kashmir': l10n.ut_jk,
+      'Ladakh': l10n.ut_ladakh,
+      'Lakshadweep': l10n.ut_lakshadweep,
+      'Puducherry': l10n.ut_puducherry,
+    };
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          l10n.q_state,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black87,
+          ),
+        ),
+        const SizedBox(height: 16),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: Colors.grey[300]!, width: 1.5),
+          ),
+          child: DropdownButtonHideUnderline(
+            child: DropdownButton<String>(
+              isExpanded: true,
+              value: _selectedState,
+              hint: const Text('Select State / UT'),
+              items: states.entries.map((entry) {
+                return DropdownMenuItem<String>(
+                  value: entry.key,
+                  child: Text(entry.value),
+                );
+              }).toList(),
+              onChanged: (value) {
+                setState(() {
+                  _selectedState = value;
+                });
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildLandOwnershipSection(AppLocalizations l10n) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          l10n.q_land_ownership,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black87,
+          ),
+        ),
+        const SizedBox(height: 16),
+        Wrap(
+          spacing: 12,
+          runSpacing: 12,
+          children: [
+            _SmallIconCard(
+              icon: Icons.do_not_step,
+              label: l10n.land_none,
+              isSelected: _landOwnership == 'landless',
+              onTap: () => setState(() => _landOwnership = 'landless'),
+            ),
+            _SmallIconCard(
+              icon: Icons.grass,
+              label: l10n.land_small,
+              isSelected: _landOwnership == 'small_land',
+              onTap: () => setState(() => _landOwnership = 'small_land'),
+            ),
+            _SmallIconCard(
+              icon: Icons.agriculture,
+              label: l10n.land_large,
+              isSelected: _landOwnership == 'large_land',
+              onTap: () => setState(() => _landOwnership = 'large_land'),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSubmitButton(AppLocalizations l10n) {
+    return SizedBox(
+      width: double.infinity,
+      height: 56,
+      child: ElevatedButton(
+        onPressed: _submitProfile,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.purple,
+          foregroundColor: Colors.white,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+        ),
+        child: const Text(
+          'Find My Schemes',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
       ),
     );
   }
 }
 
-class _OptionCard extends StatelessWidget {
+class _BigIconCard extends StatelessWidget {
   final IconData icon;
   final String label;
+  final Color color;
+  final bool isSelected;
   final VoidCallback onTap;
 
-  const _OptionCard({
+  const _BigIconCard({
     required this.icon,
     required this.label,
+    required this.color,
+    required this.isSelected,
     required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 80,
-      child: Card(
-        elevation: 2,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(16),
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Row(
-              children: [
-                Icon(icon, size: 40, color: Colors.blue),
-                const SizedBox(width: 24),
-                Expanded(
-                  child: Text(
-                    label,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 140,
+        decoration: BoxDecoration(
+          color: isSelected ? color.withValues(alpha: 0.15) : Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: isSelected ? color : Colors.grey[300]!,
+            width: isSelected ? 3 : 1.5,
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, size: 56, color: isSelected ? color : Colors.grey[600]),
+            const SizedBox(height: 12),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                color: isSelected ? color : Colors.grey[700],
+              ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _SmallIconCard extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  const _SmallIconCard({
+    required this.icon,
+    required this.label,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final cardWidth = (screenWidth - 72) / 3;
+
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: cardWidth,
+        height: 110,
+        decoration: BoxDecoration(
+          color: isSelected
+              ? Colors.purple.withValues(alpha: 0.15)
+              : Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: isSelected ? Colors.purple : Colors.grey[300]!,
+            width: isSelected ? 3 : 1.5,
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              size: 40,
+              color: isSelected ? Colors.purple : Colors.grey[600],
+            ),
+            const SizedBox(height: 8),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: Text(
+                label,
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                  color: isSelected ? Colors.purple : Colors.grey[700],
+                ),
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _FrequencyButton extends StatelessWidget {
+  final String label;
+  final bool isSelected;
+  final VoidCallback onTap;
+  final bool isFirst;
+  final bool isLast;
+
+  const _FrequencyButton({
+    required this.label,
+    required this.isSelected,
+    required this.onTap,
+    this.isFirst = false,
+    this.isLast = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          decoration: BoxDecoration(
+            color: isSelected
+                ? Colors.purple.withValues(alpha: 0.15)
+                : Colors.white,
+            borderRadius: BorderRadius.horizontal(
+              left: isFirst ? const Radius.circular(15) : Radius.zero,
+              right: isLast ? const Radius.circular(15) : Radius.zero,
+            ),
+            border: Border(
+              right: !isLast
+                  ? BorderSide(color: Colors.grey[300]!, width: 1)
+                  : BorderSide.none,
+            ),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (isSelected)
+                const Padding(
+                  padding: EdgeInsets.only(right: 4),
+                  child: Icon(Icons.check, size: 18, color: Colors.purple),
+                ),
+              Text(
+                label,
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                  color: isSelected ? Colors.purple : Colors.grey[700],
+                ),
+              ),
+            ],
           ),
         ),
       ),

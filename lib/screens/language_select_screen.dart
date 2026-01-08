@@ -1,11 +1,10 @@
 // lib/screens/language_select_screen.dart
 
 import 'package:flutter/material.dart';
-import '../l10n/app_localizations.dart';
 import 'profile_quiz_screen.dart';
 
 class LanguageSelectScreen extends StatelessWidget {
-  final Function(Locale) onLanguageSelected;
+  final void Function(Locale) onLanguageSelected;
 
   const LanguageSelectScreen({super.key, required this.onLanguageSelected});
 
