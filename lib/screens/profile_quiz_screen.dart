@@ -26,18 +26,19 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
   double _incomeAmount = 10000;
 
   void _submitProfile() {
+    final l10n = AppLocalizations.of(context)!;
     List<String> missingFields = [];
-    if (_ageGroup == null) missingFields.add('Age');
-    if (_gender == null) missingFields.add('Gender');
-    if (_occupation == null) missingFields.add('Occupation');
-    if (_locationType == null) missingFields.add('Location Type');
-    if (_selectedState == null) missingFields.add('State');
-    if (_landOwnership == null) missingFields.add('Land Ownership');
+    if (_ageGroup == null) missingFields.add(l10n.field_age);
+    if (_gender == null) missingFields.add(l10n.field_gender);
+    if (_occupation == null) missingFields.add(l10n.field_occupation);
+    if (_locationType == null) missingFields.add(l10n.field_location);
+    if (_selectedState == null) missingFields.add(l10n.field_state);
+    if (_landOwnership == null) missingFields.add(l10n.field_land);
 
     if (missingFields.isNotEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Please complete: ${missingFields.join(", ")}'),
+          content: Text(l10n.error_missing_fields(missingFields.join(", "))),
           backgroundColor: Colors.red,
         ),
       );
@@ -290,18 +291,18 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
           child: Row(
             children: [
               _FrequencyButton(
-                label: 'Daily',
+                label: l10n.freq_daily,
                 isSelected: _incomeFrequency == 'daily',
                 onTap: () => _updateIncomeFrequency('daily'),
                 isFirst: true,
               ),
               _FrequencyButton(
-                label: 'Monthly',
+                label: l10n.freq_monthly,
                 isSelected: _incomeFrequency == 'monthly',
                 onTap: () => _updateIncomeFrequency('monthly'),
               ),
               _FrequencyButton(
-                label: 'Yearly',
+                label: l10n.freq_yearly,
                 isSelected: _incomeFrequency == 'yearly',
                 onTap: () => _updateIncomeFrequency('yearly'),
                 isLast: true,
@@ -640,7 +641,7 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
             child: DropdownButton<String>(
               isExpanded: true,
               value: _selectedState,
-              hint: const Text('Select State / UT'),
+              hint: Text(l10n.select_state_hint),
               items: states.entries.map((entry) {
                 return DropdownMenuItem<String>(
                   value: entry.key,
@@ -714,8 +715,8 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
             borderRadius: BorderRadius.circular(16),
           ),
         ),
-        child: const Text(
-          'Find My Schemes',
+        child: Text(
+          l10n.find_my_schemes,
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
       ),

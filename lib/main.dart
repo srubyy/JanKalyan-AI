@@ -2,10 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'l10n/app_localizations.dart';
 
+import 'package:provider/provider.dart';
+import 'logic/wishlist_provider.dart';
 import 'screens/language_select_screen.dart';
 
 void main() {
-  runApp(const JanKalyanApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => WishlistProvider()..loadWishlist()),
+      ],
+      child: const JanKalyanApp(),
+    ),
+  );
 }
 
 class JanKalyanApp extends StatefulWidget {

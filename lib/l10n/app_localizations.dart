@@ -566,6 +566,234 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Large Land (More than 5 Acres) 🚜'**
   String get land_large;
+
+  /// No description provided for @freq_daily.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily'**
+  String get freq_daily;
+
+  /// No description provided for @freq_monthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly'**
+  String get freq_monthly;
+
+  /// No description provided for @freq_yearly.
+  ///
+  /// In en, this message translates to:
+  /// **'Yearly'**
+  String get freq_yearly;
+
+  /// No description provided for @select_state_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Select State / UT'**
+  String get select_state_hint;
+
+  /// No description provided for @find_my_schemes.
+  ///
+  /// In en, this message translates to:
+  /// **'Find My Schemes'**
+  String get find_my_schemes;
+
+  /// No description provided for @error_missing_fields.
+  ///
+  /// In en, this message translates to:
+  /// **'Please complete: {fields}'**
+  String error_missing_fields(Object fields);
+
+  /// No description provided for @field_age.
+  ///
+  /// In en, this message translates to:
+  /// **'Age'**
+  String get field_age;
+
+  /// No description provided for @field_gender.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get field_gender;
+
+  /// No description provided for @field_occupation.
+  ///
+  /// In en, this message translates to:
+  /// **'Occupation'**
+  String get field_occupation;
+
+  /// No description provided for @field_location.
+  ///
+  /// In en, this message translates to:
+  /// **'Location Type'**
+  String get field_location;
+
+  /// No description provided for @field_state.
+  ///
+  /// In en, this message translates to:
+  /// **'State'**
+  String get field_state;
+
+  /// No description provided for @field_land.
+  ///
+  /// In en, this message translates to:
+  /// **'Land Ownership'**
+  String get field_land;
+
+  /// No description provided for @wishlist_title.
+  ///
+  /// In en, this message translates to:
+  /// **'My Wishlist'**
+  String get wishlist_title;
+
+  /// No description provided for @btn_add_wishlist.
+  ///
+  /// In en, this message translates to:
+  /// **'Save for Later'**
+  String get btn_add_wishlist;
+
+  /// No description provided for @btn_remove_wishlist.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from Saved'**
+  String get btn_remove_wishlist;
+
+  /// No description provided for @btn_apply_now.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply Now'**
+  String get btn_apply_now;
+
+  /// No description provided for @view_schemes_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended Schemes'**
+  String get view_schemes_title;
+
+  /// No description provided for @no_schemes_found.
+  ///
+  /// In en, this message translates to:
+  /// **'No schemes found matching your profile.'**
+  String get no_schemes_found;
+
+  /// No description provided for @no_wishlist_items.
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t saved any schemes yet.'**
+  String get no_wishlist_items;
+
+  /// No description provided for @required_documents.
+  ///
+  /// In en, this message translates to:
+  /// **'Required Documents'**
+  String get required_documents;
+
+  /// No description provided for @doc_aadhaar.
+  ///
+  /// In en, this message translates to:
+  /// **'Aadhaar Card'**
+  String get doc_aadhaar;
+
+  /// No description provided for @doc_pan.
+  ///
+  /// In en, this message translates to:
+  /// **'PAN Card'**
+  String get doc_pan;
+
+  /// No description provided for @doc_land_record.
+  ///
+  /// In en, this message translates to:
+  /// **'Land Record (7/12)'**
+  String get doc_land_record;
+
+  /// No description provided for @doc_income_proof.
+  ///
+  /// In en, this message translates to:
+  /// **'Income Certificate'**
+  String get doc_income_proof;
+
+  /// No description provided for @doc_rural_address.
+  ///
+  /// In en, this message translates to:
+  /// **'Rural Address Proof'**
+  String get doc_rural_address;
+
+  /// No description provided for @doc_bpl_card.
+  ///
+  /// In en, this message translates to:
+  /// **'BPL Ration Card'**
+  String get doc_bpl_card;
+
+  /// No description provided for @doc_ration_card.
+  ///
+  /// In en, this message translates to:
+  /// **'Ration Card'**
+  String get doc_ration_card;
+
+  /// No description provided for @doc_age_proof.
+  ///
+  /// In en, this message translates to:
+  /// **'Age Proof'**
+  String get doc_age_proof;
+
+  /// No description provided for @doc_bank_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Bank Passbook'**
+  String get doc_bank_account;
+
+  /// No description provided for @doc_business_proof.
+  ///
+  /// In en, this message translates to:
+  /// **'Business Registration Proof'**
+  String get doc_business_proof;
+
+  /// No description provided for @doc_vendor_id.
+  ///
+  /// In en, this message translates to:
+  /// **'Street Vendor ID'**
+  String get doc_vendor_id;
+
+  /// No description provided for @doc_school_id.
+  ///
+  /// In en, this message translates to:
+  /// **'School ID Card'**
+  String get doc_school_id;
+
+  /// No description provided for @doc_disability_cert.
+  ///
+  /// In en, this message translates to:
+  /// **'Disability Certificate'**
+  String get doc_disability_cert;
+
+  /// No description provided for @doc_birth_cert.
+  ///
+  /// In en, this message translates to:
+  /// **'Birth Certificate'**
+  String get doc_birth_cert;
+
+  /// No description provided for @doc_electricity_bill.
+  ///
+  /// In en, this message translates to:
+  /// **'Electricity Bill'**
+  String get doc_electricity_bill;
+
+  /// No description provided for @doc_education_proof.
+  ///
+  /// In en, this message translates to:
+  /// **'Education Certificate'**
+  String get doc_education_proof;
+
+  /// No description provided for @view_details.
+  ///
+  /// In en, this message translates to:
+  /// **'View Details ->'**
+  String get view_details;
+
+  /// No description provided for @view_results.
+  ///
+  /// In en, this message translates to:
+  /// **'View Results'**
+  String get view_results;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

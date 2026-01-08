@@ -114,131 +114,247 @@ class AppLocalizationsMr extends AppLocalizations {
   String get special_transgender => 'तृतीयपंथी';
 
   @override
-  String get q_location_type => 'Is your area Rural or Urban?';
+  String get q_location_type => 'तुमचा भाग ग्रामीण आहे की शहरी?';
 
   @override
-  String get loc_rural => 'Village (Rural) 🌳';
+  String get loc_rural => 'गाव (ग्रामीण) 🌳';
 
   @override
-  String get loc_urban => 'City (Urban) 🏙️';
+  String get loc_urban => 'शहर (शहरी) 🏙️';
 
   @override
-  String get q_state => 'Which State or Union Territory do you live in?';
+  String get q_state => 'तुम्ही कोणत्या राज्यात किंवा केंद्रशासित प्रदेशात राहता?';
 
   @override
-  String get state_andhra => 'Andhra Pradesh';
+  String get state_andhra => 'आंध्र प्रदेश';
 
   @override
-  String get state_arunachal => 'Arunachal Pradesh';
+  String get state_arunachal => 'अरुणाचल प्रदेश';
 
   @override
-  String get state_assam => 'Assam';
+  String get state_assam => 'आसाम';
 
   @override
-  String get state_bihar => 'Bihar';
+  String get state_bihar => 'बिहार';
 
   @override
-  String get state_chhattisgarh => 'Chhattisgarh';
+  String get state_chhattisgarh => 'छत्तीसगड';
 
   @override
-  String get state_goa => 'Goa';
+  String get state_goa => 'गोवा';
 
   @override
-  String get state_gujarat => 'Gujarat';
+  String get state_gujarat => 'गुजरात';
 
   @override
-  String get state_haryana => 'Haryana';
+  String get state_haryana => 'हरियाणा';
 
   @override
-  String get state_himachal => 'Himachal Pradesh';
+  String get state_himachal => 'हिमाचल प्रदेश';
 
   @override
-  String get state_jharkhand => 'Jharkhand';
+  String get state_jharkhand => 'झारखंड';
 
   @override
-  String get state_karnataka => 'Karnataka';
+  String get state_karnataka => 'कर्नाटक';
 
   @override
-  String get state_kerala => 'Kerala';
+  String get state_kerala => 'केरळ';
 
   @override
-  String get state_mp => 'Madhya Pradesh';
+  String get state_mp => 'मध्य प्रदेश';
 
   @override
-  String get state_manipur => 'Manipur';
+  String get state_manipur => 'मणिपूर';
 
   @override
-  String get state_meghalaya => 'Meghalaya';
+  String get state_meghalaya => 'मेघालय';
 
   @override
-  String get state_mizoram => 'Mizoram';
+  String get state_mizoram => 'मिझोराम';
 
   @override
-  String get state_nagaland => 'Nagaland';
+  String get state_nagaland => 'नागालँड';
 
   @override
-  String get state_odisha => 'Odisha';
+  String get state_odisha => 'ओडिशा';
 
   @override
-  String get state_punjab => 'Punjab';
+  String get state_punjab => 'पंजाब';
 
   @override
-  String get state_rajasthan => 'Rajasthan';
+  String get state_rajasthan => 'राजस्थान';
 
   @override
-  String get state_sikkim => 'Sikkim';
+  String get state_sikkim => 'सिक्कीम';
 
   @override
-  String get state_tn => 'Tamil Nadu';
+  String get state_tn => 'मिळनाडू';
 
   @override
-  String get state_telangana => 'Telangana';
+  String get state_telangana => 'तेलंगणा';
 
   @override
-  String get state_tripura => 'Tripura';
+  String get state_tripura => 'त्रिपुरा';
 
   @override
-  String get state_up => 'Uttar Pradesh';
+  String get state_up => 'उत्तर प्रदेश';
 
   @override
-  String get state_uttarakhand => 'Uttarakhand';
+  String get state_uttarakhand => 'उत्तराखंड';
 
   @override
-  String get state_wb => 'West Bengal';
+  String get state_wb => 'पश्चिम बंगाल';
 
   @override
-  String get ut_andaman => 'Andaman & Nicobar';
+  String get ut_andaman => 'अंदमान आणि निकोबार';
 
   @override
-  String get ut_chandigarh => 'Chandigarh';
+  String get ut_chandigarh => 'चंदिगढ';
 
   @override
-  String get ut_dadra => 'Dadra & Nagar Haveli and Daman & Diu';
+  String get ut_dadra => 'दादरा आणि नगर हवेली आणि दमण आणि दीव';
 
   @override
-  String get ut_delhi => 'Delhi';
+  String get ut_delhi => 'दिल्ली';
 
   @override
-  String get ut_jk => 'Jammu & Kashmir';
+  String get ut_jk => 'जम्मू आणि काश्मीर';
 
   @override
-  String get ut_ladakh => 'Ladakh';
+  String get ut_ladakh => 'लडाख';
 
   @override
-  String get ut_lakshadweep => 'Lakshadweep';
+  String get ut_lakshadweep => 'लक्षद्वीप';
 
   @override
-  String get ut_puducherry => 'Puducherry';
+  String get ut_puducherry => 'पुदुच्चेरी';
 
   @override
-  String get q_land_ownership => 'Do you own any agricultural land?';
+  String get q_land_ownership => 'तुमच्याकडे शेतजमीन आहे का?';
 
   @override
-  String get land_none => 'Landless 🚶';
+  String get land_none => 'भूमिहीन 🚶';
 
   @override
-  String get land_small => 'Small Land (Up to 5 Acres) 🌾';
+  String get land_small => 'अल्पभूधारक (५ एकरांपर्यंत) 🌾';
 
   @override
-  String get land_large => 'Large Land (More than 5 Acres) 🚜';
+  String get land_large => 'मोठे भूधारक (५ एकरांपेक्षा जास्त) 🚜';
+
+  @override
+  String get freq_daily => 'दैनिक';
+
+  @override
+  String get freq_monthly => 'मासिक';
+
+  @override
+  String get freq_yearly => 'वार्षिक';
+
+  @override
+  String get select_state_hint => 'राज्य / केंद्रशासित प्रदेश निवडा';
+
+  @override
+  String get find_my_schemes => 'माझ्यासाठी योजना शोधा';
+
+  @override
+  String error_missing_fields(Object fields) {
+    return 'कृपया पूर्ण करा: $fields';
+  }
+
+  @override
+  String get field_age => 'वय';
+
+  @override
+  String get field_gender => 'लिंग';
+
+  @override
+  String get field_occupation => 'व्यवसाय';
+
+  @override
+  String get field_location => 'स्थान प्रकार';
+
+  @override
+  String get field_state => 'राज्य';
+
+  @override
+  String get field_land => 'जमीन मालकी';
+
+  @override
+  String get wishlist_title => 'माझी पसंती (Wishlist)';
+
+  @override
+  String get btn_add_wishlist => 'नंतरसाठी जतन करा';
+
+  @override
+  String get btn_remove_wishlist => 'जतन केलेल्यांमधून काढा';
+
+  @override
+  String get btn_apply_now => 'आता अर्ज करा';
+
+  @override
+  String get view_schemes_title => 'शिफारस केलेल्या योजना';
+
+  @override
+  String get no_schemes_found => 'तुमच्या प्रोफाइलशी जुळणाऱ्या कोणत्याही योजना आढळल्या नाहीत.';
+
+  @override
+  String get no_wishlist_items => 'तुम्ही अद्याप कोणत्याही योजना जतन केल्या नाहीत.';
+
+  @override
+  String get required_documents => 'आवश्यक कागदपत्रे';
+
+  @override
+  String get doc_aadhaar => 'आधार कार्ड';
+
+  @override
+  String get doc_pan => 'पॅन कार्ड';
+
+  @override
+  String get doc_land_record => 'जमिनीचा उतारा (7/12)';
+
+  @override
+  String get doc_income_proof => 'उत्पन्नाचा दाखला';
+
+  @override
+  String get doc_rural_address => 'ग्रामीण पत्त्याचा पुरावा';
+
+  @override
+  String get doc_bpl_card => 'बीपीएल रेशन कार्ड';
+
+  @override
+  String get doc_ration_card => 'रेशन कार्ड';
+
+  @override
+  String get doc_age_proof => 'वयाचा पुरावा';
+
+  @override
+  String get doc_bank_account => 'बँक पासबुक';
+
+  @override
+  String get doc_business_proof => 'व्यवसाय नोंदणी पुरावा';
+
+  @override
+  String get doc_vendor_id => 'फेरीवाला ओळखपत्र';
+
+  @override
+  String get doc_school_id => 'शाळेचे ओळखपत्र';
+
+  @override
+  String get doc_disability_cert => 'अपंगत्व प्रमाणपत्र';
+
+  @override
+  String get doc_birth_cert => 'जन्म प्रमाणपत्र';
+
+  @override
+  String get doc_electricity_bill => 'वीज बिल';
+
+  @override
+  String get doc_education_proof => 'शिक्षण प्रमाणपत्र';
+
+  @override
+  String get view_details => 'तपशील पहा ->';
+
+  @override
+  String get view_results => 'निकाल पहा';
 }

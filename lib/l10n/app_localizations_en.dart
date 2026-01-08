@@ -241,4 +241,120 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get land_large => 'Large Land (More than 5 Acres) 🚜';
+
+  @override
+  String get freq_daily => 'Daily';
+
+  @override
+  String get freq_monthly => 'Monthly';
+
+  @override
+  String get freq_yearly => 'Yearly';
+
+  @override
+  String get select_state_hint => 'Select State / UT';
+
+  @override
+  String get find_my_schemes => 'Find My Schemes';
+
+  @override
+  String error_missing_fields(Object fields) {
+    return 'Please complete: $fields';
+  }
+
+  @override
+  String get field_age => 'Age';
+
+  @override
+  String get field_gender => 'Gender';
+
+  @override
+  String get field_occupation => 'Occupation';
+
+  @override
+  String get field_location => 'Location Type';
+
+  @override
+  String get field_state => 'State';
+
+  @override
+  String get field_land => 'Land Ownership';
+
+  @override
+  String get wishlist_title => 'My Wishlist';
+
+  @override
+  String get btn_add_wishlist => 'Save for Later';
+
+  @override
+  String get btn_remove_wishlist => 'Remove from Saved';
+
+  @override
+  String get btn_apply_now => 'Apply Now';
+
+  @override
+  String get view_schemes_title => 'Recommended Schemes';
+
+  @override
+  String get no_schemes_found => 'No schemes found matching your profile.';
+
+  @override
+  String get no_wishlist_items => 'You haven\'t saved any schemes yet.';
+
+  @override
+  String get required_documents => 'Required Documents';
+
+  @override
+  String get doc_aadhaar => 'Aadhaar Card';
+
+  @override
+  String get doc_pan => 'PAN Card';
+
+  @override
+  String get doc_land_record => 'Land Record (7/12)';
+
+  @override
+  String get doc_income_proof => 'Income Certificate';
+
+  @override
+  String get doc_rural_address => 'Rural Address Proof';
+
+  @override
+  String get doc_bpl_card => 'BPL Ration Card';
+
+  @override
+  String get doc_ration_card => 'Ration Card';
+
+  @override
+  String get doc_age_proof => 'Age Proof';
+
+  @override
+  String get doc_bank_account => 'Bank Passbook';
+
+  @override
+  String get doc_business_proof => 'Business Registration Proof';
+
+  @override
+  String get doc_vendor_id => 'Street Vendor ID';
+
+  @override
+  String get doc_school_id => 'School ID Card';
+
+  @override
+  String get doc_disability_cert => 'Disability Certificate';
+
+  @override
+  String get doc_birth_cert => 'Birth Certificate';
+
+  @override
+  String get doc_electricity_bill => 'Electricity Bill';
+
+  @override
+  String get doc_education_proof => 'Education Certificate';
+
+  @override
+  String get view_details => 'View Details ->';
+
+  @override
+  String get view_results => 'View Results';
 }
