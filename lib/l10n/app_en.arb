@@ -1,0 +1,45 @@
+{
+  "@@locale": "en",
+  "q_age": "How old are you?",
+  "q_gender": "What is your gender?",
+  "q_income": "What is your annual income?",
+  "q_occupation": "What do you do?",
+  "q_social_category": "What is your social category?",
+  "q_special_category": "Do you belong to any special category?",
+  "skip": "Skip",
+  "processing": "Finding schemes for you...",
+  
+  "age_0_18": "0-18 Years",
+  "age_18_25": "18-25 Years",
+  "age_26_40": "26-40 Years",
+  "age_41_60": "41-60 Years",
+  "age_60_plus": "60+ Years",
+
+  "gender_male": "Male",
+  "gender_female": "Female",
+  "gender_other": "Other",
+
+  "income_below_1l": "Below ₹1 Lakh",
+  "income_1l_2_5l": "₹1 Lakh - ₹2.5 Lakh",
+  "income_2_5l_5l": "₹2.5 Lakh - ₹5 Lakh",
+  "income_above_5l": "Above ₹5 Lakh",
+
+  "occ_farmer": "Farmer",
+  "occ_student": "Student",
+  "occ_worker": "Worker",
+  "occ_artisan": "Artisan",
+  "occ_homemaker": "Homemaker",
+  "occ_self_employed": "Self Employed",
+
+  "state_maharashtra": "Maharashtra",
+  
+  "social_sc": "SC (Scheduled Caste)",
+  "social_st": "ST (Scheduled Tribe)",
+  "social_obc": "OBC (Other Backward Class)",
+  "social_general": "General",
+
+  "special_disability": "Person with Disability",
+  "special_widow": "Widow",
+  "special_single_parent": "Single Parent",
+  "special_transgender": "Transgender"
+}

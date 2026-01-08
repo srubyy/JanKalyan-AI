@@ -1,0 +1,45 @@
+{
+  "@@locale": "hi",
+  "q_age": "आपकी उम्र कितनी है?",
+  "q_gender": "आपका लिंग क्या है?",
+  "q_income": "आपकी सालाना आय कितनी है?",
+  "q_occupation": "आप क्या काम करते हैं?",
+  "q_social_category": "आपकी सामाजिक श्रेणी क्या है?",
+  "q_special_category": "क्या आप किसी विशेष श्रेणी में आते हैं?",
+  "skip": "छोड़ें",
+  "processing": "आपकी योजनाएं खोजी जा रही हैं...",
+
+  "age_0_18": "0-18 वर्ष",
+  "age_18_25": "18-25 वर्ष",
+  "age_26_40": "26-40 वर्ष",
+  "age_41_60": "41-60 वर्ष",
+  "age_60_plus": "60+ वर्ष",
+
+  "gender_male": "पुरुष",
+  "gender_female": "महिला",
+  "gender_other": "अन्य",
+
+  "income_below_1l": "₹1 लाख से कम",
+  "income_1l_2_5l": "₹1 लाख - ₹2.5 लाख",
+  "income_2_5l_5l": "₹2.5 लाख - ₹5 लाख",
+  "income_above_5l": "₹5 लाख से अधिक",
+
+  "occ_farmer": "किसान",
+  "occ_student": "छात्र",
+  "occ_worker": "मजदूर",
+  "occ_artisan": "कारीगर",
+  "occ_homemaker": "गृहिणी",
+  "occ_self_employed": "स्व-नियोजित",
+
+  "state_maharashtra": "महाराष्ट्र",
+  
+  "social_sc": "अनुसूचित जाति (SC)",
+  "social_st": "अनुसूचित जनजाति (ST)",
+  "social_obc": "अन्य पिछड़ा वर्ग (OBC)",
+  "social_general": "सामान्य (General)",
+
+  "special_disability": "विकलांग",
+  "special_widow": "विधवा",
+  "special_single_parent": "एकल माता-पिता",
+  "special_transgender": "ट्रांसजेंडर"
+}

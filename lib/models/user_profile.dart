@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'dart:developer' as developer; 
+import 'dart:developer' as developer;
+
 class UserProfile {
   final String gender;
   final String occupation;
-  final String locationType; 
+  final String locationType;
   final int age;
   final double income;
 
@@ -13,7 +14,14 @@ class UserProfile {
     required this.locationType,
     required this.age,
     required this.income,
+    this.socialCategory,
+    this.specialCategory,
+    this.state,
   });
+
+  final String? socialCategory;
+  final String? specialCategory;
+  final String? state;
 }
 
 class SmartProfileBuilder extends StatefulWidget {
@@ -40,8 +48,10 @@ class _SmartProfileBuilderState extends State<SmartProfileBuilder> {
       age: selectedAge,
       income: selectedIncome,
     );
-    
-    developer.log('Profile Created: ${user.occupation} from ${user.locationType}');
+
+    developer.log(
+      'Profile Created: ${user.occupation} from ${user.locationType}',
+    );
   }
 
   Widget _buildIconOption<T>({
@@ -58,7 +68,9 @@ class _SmartProfileBuilderState extends State<SmartProfileBuilder> {
         width: 100,
         padding: const EdgeInsets.symmetric(vertical: 16),
         decoration: BoxDecoration(
-          color: isSelected ? primaryColor.withValues(alpha: 0.1) : Colors.transparent,
+          color: isSelected
+              ? primaryColor.withValues(alpha: 0.1)
+              : Colors.transparent,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: isSelected ? primaryColor : Colors.grey.shade300,
@@ -67,12 +79,19 @@ class _SmartProfileBuilderState extends State<SmartProfileBuilder> {
         ),
         child: Column(
           children: [
-            Icon(icon, color: isSelected ? primaryColor : Colors.grey, size: 32),
+            Icon(
+              icon,
+              color: isSelected ? primaryColor : Colors.grey,
+              size: 32,
+            ),
             const SizedBox(height: 8),
-            Text(label, style: TextStyle(
-              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-              color: isSelected ? primaryColor : Colors.grey.shade700,
-            )),
+            Text(
+              label,
+              style: TextStyle(
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                color: isSelected ? primaryColor : Colors.grey.shade700,
+              ),
+            ),
           ],
         ),
       ),
@@ -84,9 +103,9 @@ class _SmartProfileBuilderState extends State<SmartProfileBuilder> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("Smart Profile Builder"), 
-        elevation: 0, 
-        backgroundColor: Colors.white, 
+        title: const Text("Smart Profile Builder"),
+        elevation: 0,
+        backgroundColor: Colors.white,
         foregroundColor: Colors.black,
       ),
       body: SingleChildScrollView(
@@ -94,15 +113,36 @@ class _SmartProfileBuilderState extends State<SmartProfileBuilder> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Occupation", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const Text(
+              "Occupation",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 12),
             Wrap(
               spacing: 12,
               runSpacing: 12,
               children: [
-                _buildIconOption(value: "farmer", groupValue: selectedOccupation, icon: Icons.agriculture, label: "Farmer", onTap: (v) => setState(() => selectedOccupation = v)),
-                _buildIconOption(value: "student", groupValue: selectedOccupation, icon: Icons.school, label: "Student", onTap: (v) => setState(() => selectedOccupation = v)),
-                _buildIconOption(value: "worker", groupValue: selectedOccupation, icon: Icons.engineering, label: "Worker", onTap: (v) => setState(() => selectedOccupation = v)),
+                _buildIconOption(
+                  value: "farmer",
+                  groupValue: selectedOccupation,
+                  icon: Icons.agriculture,
+                  label: "Farmer",
+                  onTap: (v) => setState(() => selectedOccupation = v),
+                ),
+                _buildIconOption(
+                  value: "student",
+                  groupValue: selectedOccupation,
+                  icon: Icons.school,
+                  label: "Student",
+                  onTap: (v) => setState(() => selectedOccupation = v),
+                ),
+                _buildIconOption(
+                  value: "worker",
+                  groupValue: selectedOccupation,
+                  icon: Icons.engineering,
+                  label: "Worker",
+                  onTap: (v) => setState(() => selectedOccupation = v),
+                ),
               ],
             ),
             const SizedBox(height: 40),
@@ -113,9 +153,14 @@ class _SmartProfileBuilderState extends State<SmartProfileBuilder> {
                 onPressed: _submitProfile,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: primaryColor,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
-                child: const Text("Find My Schemes", style: TextStyle(color: Colors.white, fontSize: 16)),
+                child: const Text(
+                  "Find My Schemes",
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
               ),
             ),
           ],

@@ -1,0 +1,45 @@
+{
+  "@@locale": "gu",
+  "q_age": "તમારી ઉંમર કેટલી છે?",
+  "q_gender": "તમારું લિંગ શું છે?",
+  "q_income": "તમારી વાર્ષિક આવક કેટલી છે?",
+  "q_occupation": "તમે શું કામ કરો છો?",
+  "q_social_category": "તમારી સામાજિક શ્રેણી કઈ છે?",
+  "q_special_category": "શું તમે કોઈ વિશેષ શ્રેણીમાં આવો છો?",
+  "skip": "છોડી દો",
+  "processing": "તમારા માટે યોજનાઓ શોધી રહ્યાં છીએ...",
+
+  "age_0_18": "૦-૧૮ વર્ષ",
+  "age_18_25": "૧૮-૨૫ વર્ષ",
+  "age_26_40": "૨૬-૪૦ વર્ષ",
+  "age_41_60": "૪૧-૬૦ વર્ષ",
+  "age_60_plus": "૬૦+ વર્ષ",
+
+  "gender_male": "પુરુષ",
+  "gender_female": "સ્ત્રી",
+  "gender_other": "અન્ય",
+
+  "income_below_1l": "₹૧ લાખથી ઓછી",
+  "income_1l_2_5l": "₹૧ લાખ - ₹૨.૫ લાખ",
+  "income_2_5l_5l": "₹૨.૫ લાખ - ₹૫ લાખ",
+  "income_above_5l": "₹૫ લાખથી વધુ",
+
+  "occ_farmer": "ખેડૂત",
+  "occ_student": "વિદ્યાર્થી",
+  "occ_worker": "મજૂર",
+  "occ_artisan": "કારીગર",
+  "occ_homemaker": "ગૃહિણી",
+  "occ_self_employed": "સ્વ-રોજગાર",
+
+  "state_maharashtra": "મહારાષ્ટ્ર",
+
+  "social_sc": "અનુસૂચિત જાતિ (SC)",
+  "social_st": "અનુસૂચિત જનજાતિ (ST)",
+  "social_obc": "અન્ય પછાત વર્ગ (OBC)",
+  "social_general": "સામાન્ય (General)",
+
+  "special_disability": "દિવ્યાંગ",
+  "special_widow": "વિધવા",
+  "special_single_parent": "એકલ વાલી",
+  "special_transgender": "ટ્રાન્સજેન્ડર"
+}
