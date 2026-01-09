@@ -6,7 +6,12 @@ import 'package:provider/provider.dart';
 import 'logic/wishlist_provider.dart';
 import 'screens/language_select_screen.dart';
 
-void main() {
+import 'data/schemes.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await loadSchemesFromLocalDb();
+  
   runApp(
     MultiProvider(
       providers: [

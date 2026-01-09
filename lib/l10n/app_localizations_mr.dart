@@ -357,4 +357,64 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get view_results => 'निकाल पहा';
+
+  @override
+  String get doc_yield_cert => 'उत्पन्न प्रमाणपत्र';
+
+  @override
+  String get doc_caste_cert => 'जातीचा दाखला';
+
+  @override
+  String get doc_residence_proof => 'रहिवासी दाखला';
+
+  @override
+  String get doc_parents_aadhaar => 'पालकांचे आधार';
+
+  @override
+  String get doc_mother_aadhaar => 'आईचे आधार';
+
+  @override
+  String get doc_guardian_id => 'पालक ओळखपत्र';
+
+  @override
+  String get doc_child_birth_proof => 'बाळाच्या जन्माचा पुरावा';
+
+  @override
+  String get doc_pregnancy_proof => 'गरोदरपणाचा पुरावा';
+
+  @override
+  String get doc_marriage_cert => 'विवाह प्रमाणपत्र';
+
+  @override
+  String get doc_death_cert => 'मृत्यू प्रमाणपत्र';
+
+  @override
+  String get doc_medical_cert => 'वैद्यकीय प्रमाणपत्र';
+
+  @override
+  String get doc_training_enrollment => 'प्रशिक्षण नोंदणी';
+
+  @override
+  String get doc_self_declaration => 'स्वयं घोषणापत्र';
+
+  @override
+  String get doc_bank_passbook => 'बँक पासबुक';
+
+  @override
+  String get doc_voter_id => 'मतदान ओळखपत्र';
+
+  @override
+  String get doc_driving_license => 'वाहन परवाना';
+
+  @override
+  String get doc_passport => 'पासपोर्ट';
+
+  @override
+  String get doc_job_card => 'मनरेगा जॉब कार्ड';
+
+  @override
+  String get doc_shg_resolution => 'बचत गट ठराव';
+
+  @override
+  String get doc_project_report => 'प्रकल्प अहवाल';
 }

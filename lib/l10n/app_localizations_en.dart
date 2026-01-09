@@ -357,4 +357,64 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get view_results => 'View Results';
+
+  @override
+  String get doc_yield_cert => 'Yield Certificate';
+
+  @override
+  String get doc_caste_cert => 'Caste Certificate';
+
+  @override
+  String get doc_residence_proof => 'Residence Proof';
+
+  @override
+  String get doc_parents_aadhaar => 'Parents Aadhaar';
+
+  @override
+  String get doc_mother_aadhaar => 'Mother Aadhaar';
+
+  @override
+  String get doc_guardian_id => 'Guardian ID';
+
+  @override
+  String get doc_child_birth_proof => 'Child Birth Proof';
+
+  @override
+  String get doc_pregnancy_proof => 'Pregnancy Proof';
+
+  @override
+  String get doc_marriage_cert => 'Marriage Certificate';
+
+  @override
+  String get doc_death_cert => 'Death Certificate';
+
+  @override
+  String get doc_medical_cert => 'Medical Certificate';
+
+  @override
+  String get doc_training_enrollment => 'Training Enrollment';
+
+  @override
+  String get doc_self_declaration => 'Self Declaration';
+
+  @override
+  String get doc_bank_passbook => 'Bank Passbook';
+
+  @override
+  String get doc_voter_id => 'Voter ID';
+
+  @override
+  String get doc_driving_license => 'Driving License';
+
+  @override
+  String get doc_passport => 'Passport';
+
+  @override
+  String get doc_job_card => 'MGNREGA Job Card';
+
+  @override
+  String get doc_shg_resolution => 'SHG Resolution';
+
+  @override
+  String get doc_project_report => 'Project Report';
 }

@@ -8,45 +8,36 @@
   "q_special_category": "શું તમે કોઈ વિશેષ શ્રેણીમાં આવો છો?",
   "skip": "છોડી દો",
   "processing": "તમારા માટે યોજનાઓ શોધી રહ્યાં છીએ...",
-
   "age_0_18": "૦-૧૮ વર્ષ",
   "age_18_25": "૧૮-૨૫ વર્ષ",
   "age_26_40": "૨૬-૪૦ વર્ષ",
   "age_41_60": "૪૧-૬૦ વર્ષ",
   "age_60_plus": "૬૦+ વર્ષ",
-
   "gender_male": "પુરુષ",
   "gender_female": "સ્ત્રી",
   "gender_other": "અન્ય",
-
   "income_below_1l": "₹૧ લાખથી ઓછી",
   "income_1l_2_5l": "₹૧ લાખ - ₹૨.૫ લાખ",
   "income_2_5l_5l": "₹૨.૫ લાખ - ₹૫ લાખ",
   "income_above_5l": "₹૫ લાખથી વધુ",
-
   "occ_farmer": "ખેડૂત",
   "occ_student": "વિદ્યાર્થી",
   "occ_worker": "મજૂર",
   "occ_artisan": "કારીગર",
   "occ_homemaker": "ગૃહિણી",
   "occ_self_employed": "સ્વ-રોજગાર",
-
   "state_maharashtra": "મહારાષ્ટ્ર",
-
   "social_sc": "અનુસૂચિત જાતિ (SC)",
   "social_st": "અનુસૂચિત જનજાતિ (ST)",
   "social_obc": "અન્ય પછાત વર્ગ (OBC)",
   "social_general": "સામાન્ય (General)",
-
   "special_disability": "દિવ્યાંગ",
   "special_widow": "વિધવા",
   "special_single_parent": "એકલ વાલી",
   "special_transgender": "ટ્રાન્સજેન્ડર",
-
   "q_location_type": "તમારો વિસ્તાર ગ્રામીણ છે કે શહેરી?",
   "loc_rural": "ગામ (ગ્રામીણ) 🌳",
   "loc_urban": "શહેર (શહેરી) 🏙️",
-
   "q_state": "તમે કયા રાજ્ય અથવા કેન્દ્રશાસિત પ્રદેશમાં રહે છે?",
   "state_andhra": "આંધ્ર પ્રદેશ",
   "state_arunachal": "અરુણાચલ પ્રદેશ",
@@ -83,12 +74,10 @@
   "ut_ladakh": "લદ્દાખ",
   "ut_lakshadweep": "લક્ષદ્વીપ",
   "ut_puducherry": "પુડુચેરી",
-
   "q_land_ownership": "શું તમારી પાસે કોઈ ખેતીલાયક જમીન છે?",
   "land_none": "જમીન વિહોણા 🚶",
   "land_small": "નાની જમીન (૫ એકર સુધી) 🌾",
   "land_large": "મોટી જમીન (૫ એકરથી વધુ) 🚜",
-
   "freq_daily": "દૈનિક",
   "freq_monthly": "માસિક",
   "freq_yearly": "વાર્ષિક",
@@ -126,5 +115,25 @@
   "doc_electricity_bill": "વીજળી બિલ",
   "doc_education_proof": "શિક્ષણ પ્રમાણપત્ર",
   "view_details": "વિગતો જુઓ ->",
-  "view_results": "પરિણામો જુઓ"
+  "view_results": "પરિણામો જુઓ",
+  "doc_yield_cert": "ઉપજ પ્રમાણપત્ર",
+  "doc_caste_cert": "જાતિ પ્રમાણપત્ર",
+  "doc_residence_proof": "રહેઠાણનો પુરાવો",
+  "doc_parents_aadhaar": "માતાપિતાનું આધાર",
+  "doc_mother_aadhaar": "માતાનું આધાર",
+  "doc_guardian_id": "વાલી આઈડી",
+  "doc_child_birth_proof": "બાળ જન્મ પુરાવો",
+  "doc_pregnancy_proof": "ગર્ભાવસ્થા પુરાવો",
+  "doc_marriage_cert": "લગ્ન પ્રમાણપત્ર",
+  "doc_death_cert": "મૃત્યુ પ્રમાણપત્ર",
+  "doc_medical_cert": "તબીબી પ્રમાણપત્ર",
+  "doc_training_enrollment": "તાલીમ નોંધણી",
+  "doc_self_declaration": "સ્વ-ઘોષણા",
+  "doc_bank_passbook": "બેંક પાસબુક",
+  "doc_voter_id": "મતદાર ઓળખપત્ર",
+  "doc_driving_license": "ડ્રાઇવિંગ લાઇસન્સ",
+  "doc_passport": "પાસપોર્ટ",
+  "doc_job_card": "મનરેગા જોબ કાર્ડ",
+  "doc_shg_resolution": "SHG ઠરાવ",
+  "doc_project_report": "પ્રોજેક્ટ રિપોર્ટ"
 }

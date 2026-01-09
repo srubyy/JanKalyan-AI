@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
 import '../models/user_profile.dart';
-import 'processing_screen.dart';
+import '../data/schemes.dart';
+import '../logic/eligibility_engine.dart';
+import 'dashboard_screen.dart';
 
 class ProfileQuizScreen extends StatefulWidget {
   const ProfileQuizScreen({super.key});
@@ -77,9 +79,14 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
       landOwnership: _landOwnership,
     );
 
-    Navigator.of(context).pushReplacement(
+    // Filter schemes locally
+    final eligibleSchemes = schemesDatabase
+        .where((scheme) => EligibilityEngine.isEligible(profile, scheme))
+        .toList();
+
+    Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => ProcessingScreen(profile: profile),
+        builder: (context) => DashboardScreen(schemes: eligibleSchemes),
       ),
     );
   }
@@ -484,12 +491,14 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
       children: [
         Row(
           children: [
-            Text(
-              l10n.q_special_category,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
+            Expanded(
+              child: Text(
+                l10n.q_special_category,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
               ),
             ),
             const SizedBox(width: 8),

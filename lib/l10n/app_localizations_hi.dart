@@ -357,4 +357,64 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get view_results => 'परिणाम देखें';
+
+  @override
+  String get doc_yield_cert => 'उपज प्रमाण पत्र';
+
+  @override
+  String get doc_caste_cert => 'जाति प्रमाण पत्र';
+
+  @override
+  String get doc_residence_proof => 'निवास प्रमाण';
+
+  @override
+  String get doc_parents_aadhaar => 'माता-पिता का आधार';
+
+  @override
+  String get doc_mother_aadhaar => 'माता का आधार';
+
+  @override
+  String get doc_guardian_id => 'अभिभावक आईडी';
+
+  @override
+  String get doc_child_birth_proof => 'बच्चे का जन्म प्रमाण';
+
+  @override
+  String get doc_pregnancy_proof => 'गर्भावस्था का प्रमाण';
+
+  @override
+  String get doc_marriage_cert => 'विवाह प्रमाण पत्र';
+
+  @override
+  String get doc_death_cert => 'मृत्यु प्रमाण पत्र';
+
+  @override
+  String get doc_medical_cert => 'चिकित्सा प्रमाण पत्र';
+
+  @override
+  String get doc_training_enrollment => 'प्रशिक्षण नामांकन';
+
+  @override
+  String get doc_self_declaration => 'स्व-घोषणा';
+
+  @override
+  String get doc_bank_passbook => 'बैंक पासबुक';
+
+  @override
+  String get doc_voter_id => 'मतदाता पहचान पत्र';
+
+  @override
+  String get doc_driving_license => 'ड्राइविंग लाइसेंस';
+
+  @override
+  String get doc_passport => 'पासपोर्ट';
+
+  @override
+  String get doc_job_card => 'मनरेगा जॉब कार्ड';
+
+  @override
+  String get doc_shg_resolution => 'SHG प्रस्ताव';
+
+  @override
+  String get doc_project_report => 'परियोजना रिपोर्ट';
 }

@@ -357,4 +357,64 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get view_results => 'પરિણામો જુઓ';
+
+  @override
+  String get doc_yield_cert => 'ઉપજ પ્રમાણપત્ર';
+
+  @override
+  String get doc_caste_cert => 'જાતિ પ્રમાણપત્ર';
+
+  @override
+  String get doc_residence_proof => 'રહેઠાણનો પુરાવો';
+
+  @override
+  String get doc_parents_aadhaar => 'માતાપિતાનું આધાર';
+
+  @override
+  String get doc_mother_aadhaar => 'માતાનું આધાર';
+
+  @override
+  String get doc_guardian_id => 'વાલી આઈડી';
+
+  @override
+  String get doc_child_birth_proof => 'બાળ જન્મ પુરાવો';
+
+  @override
+  String get doc_pregnancy_proof => 'ગર્ભાવસ્થા પુરાવો';
+
+  @override
+  String get doc_marriage_cert => 'લગ્ન પ્રમાણપત્ર';
+
+  @override
+  String get doc_death_cert => 'મૃત્યુ પ્રમાણપત્ર';
+
+  @override
+  String get doc_medical_cert => 'તબીબી પ્રમાણપત્ર';
+
+  @override
+  String get doc_training_enrollment => 'તાલીમ નોંધણી';
+
+  @override
+  String get doc_self_declaration => 'સ્વ-ઘોષણા';
+
+  @override
+  String get doc_bank_passbook => 'બેંક પાસબુક';
+
+  @override
+  String get doc_voter_id => 'મતદાર ઓળખપત્ર';
+
+  @override
+  String get doc_driving_license => 'ડ્રાઇવિંગ લાઇસન્સ';
+
+  @override
+  String get doc_passport => 'પાસપોર્ટ';
+
+  @override
+  String get doc_job_card => 'મનરેગા જોબ કાર્ડ';
+
+  @override
+  String get doc_shg_resolution => 'SHG ઠરાવ';
+
+  @override
+  String get doc_project_report => 'પ્રોજેક્ટ રિપોર્ટ';
 }

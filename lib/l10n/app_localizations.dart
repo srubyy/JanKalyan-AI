@@ -794,6 +794,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'View Results'**
   String get view_results;
+
+  /// No description provided for @doc_yield_cert.
+  ///
+  /// In en, this message translates to:
+  /// **'Yield Certificate'**
+  String get doc_yield_cert;
+
+  /// No description provided for @doc_caste_cert.
+  ///
+  /// In en, this message translates to:
+  /// **'Caste Certificate'**
+  String get doc_caste_cert;
+
+  /// No description provided for @doc_residence_proof.
+  ///
+  /// In en, this message translates to:
+  /// **'Residence Proof'**
+  String get doc_residence_proof;
+
+  /// No description provided for @doc_parents_aadhaar.
+  ///
+  /// In en, this message translates to:
+  /// **'Parents Aadhaar'**
+  String get doc_parents_aadhaar;
+
+  /// No description provided for @doc_mother_aadhaar.
+  ///
+  /// In en, this message translates to:
+  /// **'Mother Aadhaar'**
+  String get doc_mother_aadhaar;
+
+  /// No description provided for @doc_guardian_id.
+  ///
+  /// In en, this message translates to:
+  /// **'Guardian ID'**
+  String get doc_guardian_id;
+
+  /// No description provided for @doc_child_birth_proof.
+  ///
+  /// In en, this message translates to:
+  /// **'Child Birth Proof'**
+  String get doc_child_birth_proof;
+
+  /// No description provided for @doc_pregnancy_proof.
+  ///
+  /// In en, this message translates to:
+  /// **'Pregnancy Proof'**
+  String get doc_pregnancy_proof;
+
+  /// No description provided for @doc_marriage_cert.
+  ///
+  /// In en, this message translates to:
+  /// **'Marriage Certificate'**
+  String get doc_marriage_cert;
+
+  /// No description provided for @doc_death_cert.
+  ///
+  /// In en, this message translates to:
+  /// **'Death Certificate'**
+  String get doc_death_cert;
+
+  /// No description provided for @doc_medical_cert.
+  ///
+  /// In en, this message translates to:
+  /// **'Medical Certificate'**
+  String get doc_medical_cert;
+
+  /// No description provided for @doc_training_enrollment.
+  ///
+  /// In en, this message translates to:
+  /// **'Training Enrollment'**
+  String get doc_training_enrollment;
+
+  /// No description provided for @doc_self_declaration.
+  ///
+  /// In en, this message translates to:
+  /// **'Self Declaration'**
+  String get doc_self_declaration;
+
+  /// No description provided for @doc_bank_passbook.
+  ///
+  /// In en, this message translates to:
+  /// **'Bank Passbook'**
+  String get doc_bank_passbook;
+
+  /// No description provided for @doc_voter_id.
+  ///
+  /// In en, this message translates to:
+  /// **'Voter ID'**
+  String get doc_voter_id;
+
+  /// No description provided for @doc_driving_license.
+  ///
+  /// In en, this message translates to:
+  /// **'Driving License'**
+  String get doc_driving_license;
+
+  /// No description provided for @doc_passport.
+  ///
+  /// In en, this message translates to:
+  /// **'Passport'**
+  String get doc_passport;
+
+  /// No description provided for @doc_job_card.
+  ///
+  /// In en, this message translates to:
+  /// **'MGNREGA Job Card'**
+  String get doc_job_card;
+
+  /// No description provided for @doc_shg_resolution.
+  ///
+  /// In en, this message translates to:
+  /// **'SHG Resolution'**
+  String get doc_shg_resolution;
+
+  /// No description provided for @doc_project_report.
+  ///
+  /// In en, this message translates to:
+  /// **'Project Report'**
+  String get doc_project_report;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
