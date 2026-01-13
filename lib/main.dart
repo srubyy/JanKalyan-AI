@@ -5,17 +5,22 @@ import 'l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'logic/wishlist_provider.dart';
 import 'screens/language_select_screen.dart';
+import 'screens/returning_user_screen.dart';
 
 import 'data/schemes.dart';
+import 'data/hive_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await HiveService.init();
   await loadSchemesFromLocalDb();
-  
+
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => WishlistProvider()..loadWishlist()),
+        ChangeNotifierProvider(
+          create: (_) => WishlistProvider()..loadWishlist(),
+        ),
       ],
       child: const JanKalyanApp(),
     ),
@@ -67,7 +72,9 @@ class _JanKalyanAppState extends State<JanKalyanApp> {
       ],
 
       // 🏠 First screen
-      home: LanguageSelectScreen(onLanguageSelected: setLocale),
+      home: HiveService.isFirstLaunch()
+          ? LanguageSelectScreen(onLanguageSelected: setLocale)
+          : ReturningUserScreen(onLanguageSelected: setLocale),
     );
   }
 }

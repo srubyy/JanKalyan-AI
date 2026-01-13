@@ -5,10 +5,13 @@ import 'scheme_detail_screen.dart';
 import 'wishlist_screen.dart';
 import '../l10n/app_localizations.dart';
 
+import '../models/user_profile.dart'; // import
+
 class DashboardScreen extends StatelessWidget {
   final List<Scheme> schemes;
+  final UserProfile? userProfile;
 
-  const DashboardScreen({super.key, required this.schemes});
+  const DashboardScreen({super.key, required this.schemes, this.userProfile});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +41,10 @@ class DashboardScreen extends StatelessWidget {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => SchemeDetailScreen(scheme: schemes[i]),
+                      builder: (_) => SchemeDetailScreen(
+                        scheme: schemes[i],
+                        userProfile: userProfile,
+                      ),
                     ),
                   ),
                 );
