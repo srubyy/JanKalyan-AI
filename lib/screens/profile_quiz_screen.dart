@@ -1,4 +1,5 @@
 // lib/screens/profile_quiz_screen.dart
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
@@ -6,6 +7,7 @@ import '../models/user_profile.dart';
 import '../data/schemes.dart';
 import '../logic/eligibility_engine.dart';
 import 'dashboard_screen.dart';
+import '../widgets/translated_text.dart';
 
 class ProfileQuizScreen extends StatefulWidget {
   const ProfileQuizScreen({super.key});
@@ -27,7 +29,7 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
   String _incomeFrequency = 'monthly';
   double _incomeAmount = 10000;
 
-  void _submitProfile() {
+  void _submitProfile() async {
     final l10n = AppLocalizations.of(context)!;
     List<String> missingFields = [];
     if (_ageGroup == null) missingFields.add(l10n.field_age);
@@ -40,7 +42,7 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
     if (missingFields.isNotEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(l10n.error_missing_fields(missingFields.join(", "))),
+          content: TranslatedText(l10n.error_missing_fields(missingFields.join(", "))),
           backgroundColor: Colors.red,
         ),
       );
@@ -79,10 +81,16 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
       landOwnership: _landOwnership,
     );
 
+    // Save onboarding status
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('hasCompletedOnboarding', true);
+
     // Filter schemes locally
     final eligibleSchemes = schemesDatabase
         .where((scheme) => EligibilityEngine.isEligible(profile, scheme))
         .toList();
+
+    if (!mounted) return;
 
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -168,7 +176,7 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
       ),
       child: const Row(
         children: [
-          Text(
+          TranslatedText(
             'Smart Profile Builder',
             style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
@@ -181,7 +189,7 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        TranslatedText(
           l10n.q_gender,
           style: const TextStyle(
             fontSize: 20,
@@ -221,7 +229,7 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        TranslatedText(
           l10n.q_occupation,
           style: const TextStyle(
             fontSize: 20,
@@ -280,7 +288,7 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        TranslatedText(
           l10n.q_income,
           style: const TextStyle(
             fontSize: 20,
@@ -376,7 +384,7 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        TranslatedText(
           l10n.q_age,
           style: const TextStyle(
             fontSize: 20,
@@ -431,7 +439,7 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
       children: [
         Row(
           children: [
-            Text(
+            TranslatedText(
               l10n.q_social_category,
               style: const TextStyle(
                 fontSize: 20,
@@ -440,7 +448,7 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
               ),
             ),
             const SizedBox(width: 8),
-            Text(
+            TranslatedText(
               '(${l10n.skip})',
               style: TextStyle(
                 fontSize: 14,
@@ -492,7 +500,7 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
         Row(
           children: [
             Expanded(
-              child: Text(
+              child: TranslatedText(
                 l10n.q_special_category,
                 style: const TextStyle(
                   fontSize: 20,
@@ -502,7 +510,7 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
               ),
             ),
             const SizedBox(width: 8),
-            Text(
+            TranslatedText(
               '(${l10n.skip})',
               style: TextStyle(
                 fontSize: 14,
@@ -551,7 +559,7 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        TranslatedText(
           l10n.q_location_type,
           style: const TextStyle(
             fontSize: 20,
@@ -630,7 +638,7 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        TranslatedText(
           l10n.q_state,
           style: const TextStyle(
             fontSize: 20,
@@ -650,11 +658,11 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
             child: DropdownButton<String>(
               isExpanded: true,
               value: _selectedState,
-              hint: Text(l10n.select_state_hint),
+              hint: TranslatedText(l10n.select_state_hint),
               items: states.entries.map((entry) {
                 return DropdownMenuItem<String>(
                   value: entry.key,
-                  child: Text(entry.value),
+                  child: TranslatedText(entry.value),
                 );
               }).toList(),
               onChanged: (value) {
@@ -673,7 +681,7 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        TranslatedText(
           l10n.q_land_ownership,
           style: const TextStyle(
             fontSize: 20,
@@ -724,7 +732,7 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
             borderRadius: BorderRadius.circular(16),
           ),
         ),
-        child: Text(
+        child: TranslatedText(
           l10n.find_my_schemes,
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
@@ -767,13 +775,14 @@ class _BigIconCard extends StatelessWidget {
           children: [
             Icon(icon, size: 56, color: isSelected ? color : Colors.grey[600]),
             const SizedBox(height: 12),
-            Text(
+            TranslatedText(
               label,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
                 color: isSelected ? color : Colors.grey[700],
               ),
+              textAlign: TextAlign.center,
             ),
           ],
         ),
@@ -826,7 +835,7 @@ class _SmallIconCard extends StatelessWidget {
             const SizedBox(height: 8),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4),
-              child: Text(
+              child: TranslatedText(
                 label,
                 style: TextStyle(
                   fontSize: 13,
@@ -889,7 +898,7 @@ class _FrequencyButton extends StatelessWidget {
                   padding: EdgeInsets.only(right: 4),
                   child: Icon(Icons.check, size: 18, color: Colors.purple),
                 ),
-              Text(
+              TranslatedText(
                 label,
                 style: TextStyle(
                   fontSize: 15,

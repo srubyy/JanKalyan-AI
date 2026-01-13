@@ -5,8 +5,13 @@ import 'profile_quiz_screen.dart';
 
 class LanguageSelectScreen extends StatelessWidget {
   final void Function(Locale) onLanguageSelected;
+  final VoidCallback? onNext;
 
-  const LanguageSelectScreen({super.key, required this.onLanguageSelected});
+  const LanguageSelectScreen({
+    super.key, 
+    required this.onLanguageSelected,
+    this.onNext,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +54,14 @@ class LanguageSelectScreen extends StatelessWidget {
 
   void _selectLanguage(BuildContext context, Locale locale) {
     onLanguageSelected(locale);
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => const ProfileQuizScreen()),
-    );
+    
+    if (onNext != null) {
+      onNext!();
+    } else {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const ProfileQuizScreen()),
+      );
+    }
   }
 }
 

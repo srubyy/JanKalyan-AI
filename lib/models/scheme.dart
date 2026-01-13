@@ -8,6 +8,8 @@ class Scheme {
   final List<String> requiredDocuments;
   final String applicationUrl;
 
+  final String benefitAmount;
+
   Scheme({
     required this.id,
     required this.name,
@@ -17,5 +19,6 @@ class Scheme {
     required this.rules,
     required this.requiredDocuments,
     this.applicationUrl = 'https://www.india.gov.in/',
+    this.benefitAmount = '', 
   });
 }

@@ -6,9 +6,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
-import 'app_localizations_gu.dart';
-import 'app_localizations_hi.dart';
-import 'app_localizations_mr.dart';
 
 // ignore_for_file: type=lint
 
@@ -93,10 +90,7 @@ abstract class AppLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
-    Locale('en'),
-    Locale('gu'),
-    Locale('hi'),
-    Locale('mr')
+    Locale('en')
   ];
 
   /// No description provided for @q_age.
@@ -925,7 +919,7 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'gu', 'hi', 'mr'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -937,9 +931,6 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'en': return AppLocalizationsEn();
-    case 'gu': return AppLocalizationsGu();
-    case 'hi': return AppLocalizationsHi();
-    case 'mr': return AppLocalizationsMr();
   }
 
   throw FlutterError(
