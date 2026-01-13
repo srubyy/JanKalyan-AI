@@ -183,7 +183,7 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
       child: const Row(
         children: [
           TranslatedText(
-            'Smart Profile Builder',
+            'My Profile',
             style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
         ],
@@ -444,24 +444,47 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TranslatedText(
-              l10n.q_social_category,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
+            Expanded(
+              child: TranslatedText(
+                l10n.q_social_category,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
               ),
             ),
-            const SizedBox(width: 8),
-            TranslatedText(
-              '(${l10n.skip})',
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey[600],
-                fontStyle: FontStyle.italic,
+            if (_socialCategory == null)
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: TranslatedText(
+                  '(${l10n.skip})',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey[600],
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              )
+            else
+              TextButton(
+                onPressed: () => setState(() => _socialCategory = null),
+                style: TextButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  minimumSize: Size.zero,
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
+                child: TranslatedText(
+                  l10n.btn_clear_selection,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.red[400],
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
-            ),
           ],
         ),
         const SizedBox(height: 16),
@@ -504,6 +527,7 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
               child: TranslatedText(
@@ -515,15 +539,35 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
                 ),
               ),
             ),
-            const SizedBox(width: 8),
-            TranslatedText(
-              '(${l10n.skip})',
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey[600],
-                fontStyle: FontStyle.italic,
+            if (_specialCategory == null)
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: TranslatedText(
+                  '(${l10n.skip})',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey[600],
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              )
+            else
+              TextButton(
+                onPressed: () => setState(() => _specialCategory = null),
+                style: TextButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  minimumSize: Size.zero,
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
+                child: TranslatedText(
+                  l10n.btn_clear_selection,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.red[400],
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
-            ),
           ],
         ),
         const SizedBox(height: 16),

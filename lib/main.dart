@@ -104,7 +104,7 @@ class _JanKalyanAppState extends State<JanKalyanApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'JanKalyan AI',
+      title: 'JanKalyan',
       locale: _locale,
 
       theme: ThemeData(

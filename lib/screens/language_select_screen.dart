@@ -23,7 +23,10 @@ class LanguageSelectScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.language, size: 80, color: Colors.blue),
+                Image.asset(
+                  'assets/images/app_logo.jpg',
+                  height: 180,
+                ),
                 const SizedBox(height: 48),
                 _LanguageButton(
                   label: 'English',

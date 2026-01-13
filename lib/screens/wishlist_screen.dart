@@ -9,6 +9,7 @@ import '../widgets/translated_text.dart';
 import '../logic/translation_service.dart';
 import '../main.dart';
 import 'language_select_screen.dart';
+import 'scheme_detail_screen.dart';
 
 class WishlistScreen extends StatefulWidget {
   const WishlistScreen({super.key});
@@ -167,6 +168,15 @@ class _WishlistScreenState extends State<WishlistScreen> {
                             onApply: () => _launchUrl(
                               wishlistedSchemes[index].applicationUrl,
                             ),
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => SchemeDetailScreen(
+                                    scheme: wishlistedSchemes[index],
+                                  ),
+                                ),
+                              );
+                            },
                             l10n: l10n,
                           );
                         },
@@ -184,12 +194,14 @@ class _WishlistSchemeCard extends StatefulWidget {
   final Scheme scheme;
   final VoidCallback onRemove;
   final VoidCallback onApply;
+  final VoidCallback onTap;
   final AppLocalizations l10n;
 
   const _WishlistSchemeCard({
     required this.scheme,
     required this.onRemove,
     required this.onApply,
+    required this.onTap,
     required this.l10n,
   });
 
@@ -246,8 +258,11 @@ class _WishlistSchemeCardState extends State<_WishlistSchemeCard> {
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
+      clipBehavior: Clip.antiAlias, // Ensure ripple is clipped
+      child: InkWell(
+        onTap: widget.onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -287,8 +302,10 @@ class _WishlistSchemeCardState extends State<_WishlistSchemeCard> {
               ),
             ),
           ],
+
         ),
       ),
+    ),
     );
   }
 }

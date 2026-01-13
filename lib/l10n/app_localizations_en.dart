@@ -15,7 +15,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get q_gender => 'What is your gender?';
 
   @override
-  String get q_income => 'What is your annual income?';
+  String get q_income => 'What is your income?';
 
   @override
   String get q_occupation => 'What do you do?';
@@ -117,10 +117,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get q_location_type => 'Is your area Rural or Urban?';
 
   @override
-  String get loc_rural => 'Village (Rural) 🌳';
+  String get loc_rural => 'Village (Rural)';
 
   @override
-  String get loc_urban => 'City (Urban) 🏙️';
+  String get loc_urban => 'City (Urban)';
 
   @override
   String get q_state => 'Which State or Union Territory do you live in?';
@@ -234,13 +234,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get q_land_ownership => 'Do you own any agricultural land?';
 
   @override
-  String get land_none => 'Landless 🚶';
+  String get land_none => 'Landless';
 
   @override
-  String get land_small => 'Small Land (Up to 5 Acres) 🌾';
+  String get land_small => 'Small Land (Up to 5 Acres)';
 
   @override
-  String get land_large => 'Large Land (More than 5 Acres) 🚜';
+  String get land_large => 'Large Land (More than 5 Acres)';
 
   @override
   String get freq_daily => 'Daily';
@@ -417,4 +417,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get doc_project_report => 'Project Report';
+
+  @override
+  String get btn_clear_selection => 'Clear Selection';
 }

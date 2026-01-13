@@ -108,7 +108,7 @@ abstract class AppLocalizations {
   /// No description provided for @q_income.
   ///
   /// In en, this message translates to:
-  /// **'What is your annual income?'**
+  /// **'What is your income?'**
   String get q_income;
 
   /// No description provided for @q_occupation.
@@ -312,13 +312,13 @@ abstract class AppLocalizations {
   /// No description provided for @loc_rural.
   ///
   /// In en, this message translates to:
-  /// **'Village (Rural) 🌳'**
+  /// **'Village (Rural)'**
   String get loc_rural;
 
   /// No description provided for @loc_urban.
   ///
   /// In en, this message translates to:
-  /// **'City (Urban) 🏙️'**
+  /// **'City (Urban)'**
   String get loc_urban;
 
   /// No description provided for @q_state.
@@ -546,19 +546,19 @@ abstract class AppLocalizations {
   /// No description provided for @land_none.
   ///
   /// In en, this message translates to:
-  /// **'Landless 🚶'**
+  /// **'Landless'**
   String get land_none;
 
   /// No description provided for @land_small.
   ///
   /// In en, this message translates to:
-  /// **'Small Land (Up to 5 Acres) 🌾'**
+  /// **'Small Land (Up to 5 Acres)'**
   String get land_small;
 
   /// No description provided for @land_large.
   ///
   /// In en, this message translates to:
-  /// **'Large Land (More than 5 Acres) 🚜'**
+  /// **'Large Land (More than 5 Acres)'**
   String get land_large;
 
   /// No description provided for @freq_daily.
@@ -908,6 +908,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Project Report'**
   String get doc_project_report;
+
+  /// No description provided for @btn_clear_selection.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear Selection'**
+  String get btn_clear_selection;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
