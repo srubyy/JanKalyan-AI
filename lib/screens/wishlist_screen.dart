@@ -18,7 +18,6 @@ class WishlistScreen extends StatefulWidget {
 }
 
 class _WishlistScreenState extends State<WishlistScreen> {
-
   Future<void> _launchUrl(String url) async {
     final Uri uri = Uri.parse(url);
     if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
@@ -29,32 +28,33 @@ class _WishlistScreenState extends State<WishlistScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final locale = Localizations.localeOf(context).languageCode;
 
     return Scaffold(
       appBar: AppBar(
         title: TranslatedText(l10n.wishlist_title),
         actions: [
           IconButton(
-            icon: const Icon(Icons.refresh), 
-            tooltip: "Retake Quiz", // Localize if possible, but tooltip is minor
+            icon: const Icon(Icons.refresh),
+            tooltip:
+                "Retake Quiz", // Localize if possible, but tooltip is minor
             onPressed: () {
-               Navigator.of(context).pushNamed('/quiz');
+              Navigator.of(context).pushNamed('/quiz');
             },
           ),
           IconButton(
             icon: const Icon(Icons.language),
             tooltip: "Change Language",
             onPressed: () {
-               // Push LanguageSelectScreen directly so we can define onNext behavior
-               Navigator.of(context).push(
-                 MaterialPageRoute(
-                   builder: (context) => LanguageSelectScreen(
-                     onLanguageSelected: (locale) => JanKalyanApp.setLocale(context, locale),
-                     onNext: () => Navigator.of(context).pop(),
-                   ),
-                 ),
-               );
+              // Push LanguageSelectScreen directly so we can define onNext behavior
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => LanguageSelectScreen(
+                    onLanguageSelected: (locale) =>
+                        JanKalyanApp.setLocale(context, locale),
+                    onNext: () => Navigator.of(context).pop(),
+                  ),
+                ),
+              );
             },
           ),
         ],
@@ -70,22 +70,30 @@ class _WishlistScreenState extends State<WishlistScreen> {
             children: [
               // 1. Top Actions Bar
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 12,
+                  horizontal: 16,
+                ),
                 color: Colors.grey[100],
                 child: Row(
                   children: [
                     Expanded(
                       child: OutlinedButton.icon(
                         icon: const Icon(Icons.refresh, size: 18),
-                        label: const TranslatedText("Retake Profile Quiz", style: TextStyle(fontSize: 13)),
+                        label: const TranslatedText(
+                          "Retake Profile Quiz",
+                          style: TextStyle(fontSize: 13),
+                        ),
                         style: OutlinedButton.styleFrom(
                           foregroundColor: Colors.deepPurple,
                           side: const BorderSide(color: Colors.deepPurple),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                           padding: const EdgeInsets.symmetric(vertical: 12),
                         ),
                         onPressed: () {
-                           Navigator.of(context).pushNamed('/quiz');
+                          Navigator.of(context).pushNamed('/quiz');
                         },
                       ),
                     ),
@@ -93,22 +101,28 @@ class _WishlistScreenState extends State<WishlistScreen> {
                     Expanded(
                       child: OutlinedButton.icon(
                         icon: const Icon(Icons.language, size: 18),
-                        label: const TranslatedText("Change Language", style: TextStyle(fontSize: 13)),
+                        label: const TranslatedText(
+                          "Change Language",
+                          style: TextStyle(fontSize: 13),
+                        ),
                         style: OutlinedButton.styleFrom(
                           foregroundColor: Colors.indigo,
                           side: const BorderSide(color: Colors.indigo),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                           padding: const EdgeInsets.symmetric(vertical: 12),
                         ),
                         onPressed: () {
                           Navigator.of(context).push(
-                             MaterialPageRoute(
-                               builder: (context) => LanguageSelectScreen(
-                                 onLanguageSelected: (locale) => JanKalyanApp.setLocale(context, locale),
-                                 onNext: () => Navigator.of(context).pop(),
-                               ),
-                             ),
-                           );
+                            MaterialPageRoute(
+                              builder: (context) => LanguageSelectScreen(
+                                onLanguageSelected: (locale) =>
+                                    JanKalyanApp.setLocale(context, locale),
+                                onNext: () => Navigator.of(context).pop(),
+                              ),
+                            ),
+                          );
                         },
                       ),
                     ),
@@ -119,32 +133,44 @@ class _WishlistScreenState extends State<WishlistScreen> {
               // 2. Wishlist Content
               Expanded(
                 child: wishlistedIds.isEmpty
-                  ? Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.favorite_border, size: 64, color: Colors.grey[300]),
-                          const SizedBox(height: 16),
-                          TranslatedText(
-                            l10n.no_wishlist_items,
-                            style: TextStyle(color: Colors.grey[600], fontSize: 16),
-                          ),
-                        ],
+                    ? Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.favorite_border,
+                              size: 64,
+                              color: Colors.grey[300],
+                            ),
+                            const SizedBox(height: 16),
+                            TranslatedText(
+                              l10n.no_wishlist_items,
+                              style: TextStyle(
+                                color: Colors.grey[600],
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    : ListView.separated(
+                        padding: const EdgeInsets.all(16),
+                        itemCount: wishlistedSchemes.length,
+                        separatorBuilder: (context, index) =>
+                            const SizedBox(height: 16),
+                        itemBuilder: (context, index) {
+                          return _WishlistSchemeCard(
+                            scheme: wishlistedSchemes[index],
+                            onRemove: () => wishlistProvider.removeFromWishlist(
+                              wishlistedSchemes[index].id,
+                            ),
+                            onApply: () => _launchUrl(
+                              wishlistedSchemes[index].applicationUrl,
+                            ),
+                            l10n: l10n,
+                          );
+                        },
                       ),
-                    )
-                  : ListView.separated(
-                      padding: const EdgeInsets.all(16),
-                      itemCount: wishlistedSchemes.length,
-                      separatorBuilder: (context, index) => const SizedBox(height: 16),
-                      itemBuilder: (context, index) {
-                        return _WishlistSchemeCard(
-                          scheme: wishlistedSchemes[index], 
-                          onRemove: () => wishlistProvider.removeFromWishlist(wishlistedSchemes[index].id),
-                          onApply: () => _launchUrl(wishlistedSchemes[index].applicationUrl),
-                          l10n: l10n,
-                        );
-                      },
-                    ),
               ),
             ],
           );
@@ -173,7 +199,7 @@ class _WishlistSchemeCard extends StatefulWidget {
 
 class _WishlistSchemeCardState extends State<_WishlistSchemeCard> {
   // Similar logic to SchemeCard for translation
-  
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -183,17 +209,21 @@ class _WishlistSchemeCardState extends State<_WishlistSchemeCard> {
   Future<void> _checkAndTranslate() async {
     final locale = Localizations.localeOf(context).languageCode;
     if (locale == 'en') return;
-    
+
     // Check if already translated
-    if (widget.scheme.translatedNames.containsKey(locale) && 
-        widget.scheme.translatedDescriptions.containsKey(locale)) return;
+    if (widget.scheme.translatedNames.containsKey(locale) &&
+        widget.scheme.translatedDescriptions.containsKey(locale))
+      return;
 
     try {
       final nameTask = TranslationService.translate(widget.scheme.name, locale);
-      final descTask = TranslationService.translate(widget.scheme.description, locale);
-      
+      final descTask = TranslationService.translate(
+        widget.scheme.description,
+        locale,
+      );
+
       final results = await Future.wait([nameTask, descTask]);
-      
+
       if (mounted) {
         setState(() {
           widget.scheme.translatedNames[locale] = results[0];
@@ -209,13 +239,13 @@ class _WishlistSchemeCardState extends State<_WishlistSchemeCard> {
   Widget build(BuildContext context) {
     final locale = Localizations.localeOf(context).languageCode;
     final name = widget.scheme.translatedNames[locale] ?? widget.scheme.name;
-    final desc = widget.scheme.translatedDescriptions[locale] ?? widget.scheme.description;
+    final desc =
+        widget.scheme.translatedDescriptions[locale] ??
+        widget.scheme.description;
 
     return Card(
       elevation: 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

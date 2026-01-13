@@ -42,7 +42,9 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
     if (missingFields.isNotEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: TranslatedText(l10n.error_missing_fields(missingFields.join(", "))),
+          content: TranslatedText(
+            l10n.error_missing_fields(missingFields.join(", ")),
+          ),
           backgroundColor: Colors.red,
         ),
       );
@@ -87,7 +89,11 @@ class _ProfileQuizScreenState extends State<ProfileQuizScreen> {
 
     // Filter schemes locally
     final eligibleSchemes = schemesDatabase
-        .where((scheme) => EligibilityEngine.isEligible(profile, scheme))
+        .where(
+          (scheme) =>
+              EligibilityEngine.evaluate(profile, scheme).status ==
+              EligibilityStatus.eligible,
+        )
         .toList();
 
     if (!mounted) return;
